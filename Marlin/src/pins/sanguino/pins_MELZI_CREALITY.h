@@ -43,6 +43,7 @@
 #endif
 
 //
+<<<<<<< HEAD
 // LCD / Controller
 //
 #if ANY(MKS_MINI_12864, CR10_STOCKDISPLAY, ENDER2_STOCKDISPLAY)
@@ -56,6 +57,15 @@
   #endif
 
   #define LCD_SDSS                            31  // Controller's SD card
+=======
+// For the stock CR-10 enable CR10_STOCKDISPLAY in Configuration.h
+//
+#if ENABLED(CR10_STOCKDISPLAY)
+  #define LCD_SDSS                            31  // Smart Controller SD card reader (rather than the Melzi)
+  #define LCD_PINS_RS                         28  // ST9720 CS
+  #define LCD_PINS_ENABLE                     17  // ST9720 DAT
+  #define LCD_PINS_D4                         30  // ST9720 CLK
+>>>>>>> master
 
   #define BTN_ENC                             16
   #define BTN_EN1                             11
@@ -63,7 +73,10 @@
   #define BEEPER_PIN                          27
 
   #define LCD_PINS_DEFINED
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 #endif
 
 #include "pins_MELZI.h" // ... SANGUINOLOLU_12 ... SANGUINOLOLU_11

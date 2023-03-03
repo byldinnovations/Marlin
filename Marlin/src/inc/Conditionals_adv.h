@@ -79,13 +79,17 @@
   #define SERVO_DELAY { 50 }
 #endif
 
+<<<<<<< HEAD
 #if !HAS_BED_PROBE
   #undef BABYSTEP_ZPROBE_OFFSET
 #endif
+=======
+>>>>>>> master
 #if !HAS_STOWABLE_PROBE
   #undef PROBE_DEPLOY_STOW_MENU
 #endif
 
+<<<<<<< HEAD
 // Some options are disallowed without required axes
 #if !HAS_Y_AXIS
   #undef SAFE_BED_LEVELING_START_Y
@@ -119,14 +123,39 @@
 // Disallowed with no extruders
 #if !HAS_EXTRUDERS
   #define NO_VOLUMETRICS
+=======
+#if !HAS_EXTRUDERS
+  #define NO_VOLUMETRICS
+  #undef TEMP_SENSOR_0
+  #undef TEMP_SENSOR_1
+  #undef TEMP_SENSOR_2
+  #undef TEMP_SENSOR_3
+  #undef TEMP_SENSOR_4
+  #undef TEMP_SENSOR_5
+  #undef TEMP_SENSOR_6
+  #undef TEMP_SENSOR_7
+>>>>>>> master
   #undef FWRETRACT
   #undef PIDTEMP
   #undef AUTOTEMP
   #undef PID_EXTRUSION_SCALING
   #undef LIN_ADVANCE
+<<<<<<< HEAD
   #undef ADVANCED_PAUSE_FEATURE
   #undef FILAMENT_LOAD_UNLOAD_GCODES
   #undef EXTRUDER_RUNOUT_PREVENT
+=======
+  #undef FILAMENT_RUNOUT_SENSOR
+  #undef ADVANCED_PAUSE_FEATURE
+  #undef FILAMENT_RUNOUT_DISTANCE_MM
+  #undef FILAMENT_LOAD_UNLOAD_GCODES
+  #undef DISABLE_INACTIVE_EXTRUDER
+  #undef FILAMENT_LOAD_UNLOAD_GCODES
+  #undef EXTRUDER_RUNOUT_PREVENT
+  #undef PREVENT_COLD_EXTRUSION
+  #undef PREVENT_LENGTHY_EXTRUDE
+  #undef THERMAL_PROTECTION_HOTENDS
+>>>>>>> master
   #undef THERMAL_PROTECTION_PERIOD
   #undef WATCH_TEMP_PERIOD
   #undef SHOW_TEMP_ADC_VALUES
@@ -672,10 +701,13 @@
   #define HAS_MEDIA_SUBCALLS 1
 #endif
 
+<<<<<<< HEAD
 #if ANY(SHOW_PROGRESS_PERCENT, SHOW_ELAPSED_TIME, SHOW_REMAINING_TIME, SHOW_INTERACTION_TIME)
   #define HAS_EXTRA_PROGRESS 1
 #endif
 
+=======
+>>>>>>> master
 #if HAS_PRINT_PROGRESS && EITHER(PRINT_PROGRESS_SHOW_DECIMALS, SHOW_REMAINING_TIME)
   #define HAS_PRINT_PROGRESS_PERMYRIAD 1
 #endif
@@ -1038,12 +1070,15 @@
   #endif
 #endif
 
+<<<<<<< HEAD
 #if    defined(SAFE_BED_LEVELING_START_X) || defined(SAFE_BED_LEVELING_START_Y) || defined(SAFE_BED_LEVELING_START_Z) \
     || defined(SAFE_BED_LEVELING_START_I) || defined(SAFE_BED_LEVELING_START_J) || defined(SAFE_BED_LEVELING_START_K) \
     || defined(SAFE_BED_LEVELING_START_U) || defined(SAFE_BED_LEVELING_START_V) || defined(SAFE_BED_LEVELING_START_W)
   #define HAS_SAFE_BED_LEVELING 1
 #endif
 
+=======
+>>>>>>> master
 //
 // SD Card connection methods
 // Defined here so pins and sanity checks can use them
@@ -1149,6 +1184,14 @@
 #endif
 
 // Input shaping
+<<<<<<< HEAD
+=======
+#if !HAS_Y_AXIS
+  #undef INPUT_SHAPING_Y
+  #undef SHAPING_FREQ_Y
+  #undef SHAPING_BUFFER_Y
+#endif
+>>>>>>> master
 #if EITHER(INPUT_SHAPING_X, INPUT_SHAPING_Y)
   #define HAS_SHAPING 1
 #endif

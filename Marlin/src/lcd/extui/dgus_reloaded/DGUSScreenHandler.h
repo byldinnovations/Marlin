@@ -72,10 +72,17 @@ public:
   static void SetMessageLine(const char* msg, uint8_t line);
   static void SetMessageLinePGM(PGM_P msg, uint8_t line);
 
+<<<<<<< HEAD
   static void SetStatusMessage(const char* msg, const millis_t duration=DGUS_STATUS_EXPIRATION_MS);
   static void SetStatusMessage(FSTR_P const msg, const millis_t duration=DGUS_STATUS_EXPIRATION_MS);
 
   static void ShowWaitScreen(DGUS_Screen return_screen, bool has_continue=false);
+=======
+  static void SetStatusMessage(const char* msg, const millis_t duration = DGUS_STATUS_EXPIRATION_MS);
+  static void SetStatusMessage(FSTR_P const msg, const millis_t duration = DGUS_STATUS_EXPIRATION_MS);
+
+  static void ShowWaitScreen(DGUS_Screen return_screen, bool has_continue = false);
+>>>>>>> master
 
   static DGUS_Screen GetCurrentScreen();
   static void TriggerScreenChange(DGUS_Screen screen);
@@ -115,7 +122,11 @@ private:
   static const DGUS_Addr* FindScreenAddrList(DGUS_Screen screen);
   static bool CallScreenSetup(DGUS_Screen screen);
 
+<<<<<<< HEAD
   static void MoveToScreen(DGUS_Screen screen, bool abort_wait=false);
+=======
+  static void MoveToScreen(DGUS_Screen screen, bool abort_wait = false);
+>>>>>>> master
   static bool SendScreenVPData(DGUS_Screen screen, bool complete_update);
 
   static bool settings_ready;

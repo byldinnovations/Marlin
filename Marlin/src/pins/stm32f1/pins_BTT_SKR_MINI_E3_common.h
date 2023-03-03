@@ -163,8 +163,13 @@
   #if ENABLED(CR10_STOCKDISPLAY)
 
     #define BEEPER_PIN               EXP1_01_PIN
+<<<<<<< HEAD
 
     #define BTN_ENC                  EXP1_02_PIN
+=======
+    #define BTN_ENC                  EXP1_02_PIN
+
+>>>>>>> master
     #define BTN_EN1                  EXP1_03_PIN
     #define BTN_EN2                  EXP1_05_PIN
 
@@ -172,6 +177,7 @@
     #define LCD_PINS_ENABLE          EXP1_08_PIN
     #define LCD_PINS_D4              EXP1_06_PIN
 
+<<<<<<< HEAD
   #elif ENABLED(LCD_FOR_MELZI)
 
     #ifndef NO_CONTROLLER_CUSTOM_WIRING_WARNING
@@ -203,6 +209,8 @@
     #define LCD_PINS_ENABLE          EXP1_03_PIN
     #define LCD_PINS_D4              EXP1_05_PIN
 
+=======
+>>>>>>> master
   #elif ENABLED(ZONESTAR_LCD)                     // ANET A8 LCD Controller - Must convert to 3.3V - CONNECTING TO 5V WILL DAMAGE THE BOARD!
 
     #ifndef NO_CONTROLLER_CUSTOM_WIRING_WARNING
@@ -337,7 +345,11 @@
     #define FORCE_SOFT_SPI
 
   #else
+<<<<<<< HEAD
     #error "Only CR10_STOCKDISPLAY, LCD_FOR_MELZI, ZONESTAR_LCD, ENDER2_STOCKDISPLAY, MKS_MINI_12864, TFTGLCD_PANEL_(SPI|I2C), FYSETC_MINI_12864_2_1, MKS_MINI_12864_V3, and BTT_MINI_12864_V1 are currently supported on the BIGTREE_SKR_MINI_E3."
+=======
+    #error "Only CR10_STOCKDISPLAY, ZONESTAR_LCD, ENDER2_STOCKDISPLAY, MKS_MINI_12864, TFTGLCD_PANEL_(SPI|I2C), FYSETC_MINI_12864_2_1, MKS_MINI_12864_V3, and BTT_MINI_12864_V1 are currently supported on the BIGTREE_SKR_MINI_E3."
+>>>>>>> master
   #endif
 
 #endif // HAS_WIRED_LCD

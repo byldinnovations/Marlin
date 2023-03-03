@@ -117,7 +117,11 @@ void TFT_Queue::canvas(queueTask_t *task) {
         Canvas.SetBackground(((parametersCanvasBackground_t *)item)->color);
         break;
       case CANVAS_ADD_TEXT:
+<<<<<<< HEAD
         Canvas.AddText(((parametersCanvasText_t *)item)->x, ((parametersCanvasText_t *)item)->y, ((parametersCanvasText_t *)item)->color, (uint16_t*)(item + sizeof(parametersCanvasText_t)), ((parametersCanvasText_t *)item)->maxWidth);
+=======
+        Canvas.AddText(((parametersCanvasText_t *)item)->x, ((parametersCanvasText_t *)item)->y, ((parametersCanvasText_t *)item)->color, item + sizeof(parametersCanvasText_t), ((parametersCanvasText_t *)item)->maxWidth);
+>>>>>>> master
         break;
 
       case CANVAS_ADD_IMAGE:
@@ -232,6 +236,7 @@ void TFT_Queue::add_text(uint16_t x, uint16_t y, uint16_t color, const uint8_t *
 
   end_of_queue += sizeof(parametersCanvasText_t);
 
+<<<<<<< HEAD
   uint16_t *character = (uint16_t *)end_of_queue;
 
   lchar_t wc;
@@ -268,6 +273,10 @@ void TFT_Queue::add_text(uint16_t x, uint16_t y, uint16_t color, const uint16_t 
   /* TODO: Deal with maxWidth */
   while ((*character++ = *pointer++) != 0);
   end_of_queue = (uint8_t *)character;
+=======
+  /* TODO: Deal with maxWidth */
+  while ((*(end_of_queue++) = *pointer++) != 0x00);
+>>>>>>> master
 
   parameters->nextParameter = end_of_queue;
   parameters->stringLength = pointer - string;

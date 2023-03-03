@@ -190,6 +190,7 @@
   #define XY_CENTER { X_CENTER, Y_CENTER }
 #endif
 #if HAS_I_AXIS
+<<<<<<< HEAD
   #define I_CENTER _I_HALF_BED
 #endif
 #if HAS_J_AXIS
@@ -206,6 +207,24 @@
 #endif
 #if HAS_W_AXIS
   #define W_CENTER _W_HALF_BED
+=======
+  #define I_CENTER TERN(BED_CENTER_AT_0_0, 0, _I_HALF_BED)
+#endif
+#if HAS_J_AXIS
+  #define J_CENTER TERN(BED_CENTER_AT_0_0, 0, _J_HALF_BED)
+#endif
+#if HAS_K_AXIS
+  #define K_CENTER TERN(BED_CENTER_AT_0_0, 0, _K_HALF_BED)
+#endif
+#if HAS_U_AXIS
+  #define U_CENTER TERN(BED_CENTER_AT_0_0, 0, _U_HALF_BED)
+#endif
+#if HAS_V_AXIS
+  #define V_CENTER TERN(BED_CENTER_AT_0_0, 0, _V_HALF_BED)
+#endif
+#if HAS_W_AXIS
+  #define W_CENTER TERN(BED_CENTER_AT_0_0, 0, _W_HALF_BED)
+>>>>>>> master
 #endif
 
 // Get the linear boundaries of the bed
@@ -267,7 +286,10 @@
  */
 #if IS_KINEMATIC
   #undef LCD_BED_TRAMMING
+<<<<<<< HEAD
   #undef SLOWDOWN
+=======
+>>>>>>> master
 #endif
 
 /**
@@ -275,11 +297,20 @@
  * Printable radius assumes joints can fully extend
  */
 #if IS_SCARA
+<<<<<<< HEAD
   #if ENABLED(AXEL_TPARA)
     #define PRINTABLE_RADIUS (TPARA_LINKAGE_1 + TPARA_LINKAGE_2)
   #else
     #define QUICK_HOME
     #define PRINTABLE_RADIUS (SCARA_LINKAGE_1 + SCARA_LINKAGE_2)
+=======
+  #undef SLOWDOWN
+  #if ENABLED(AXEL_TPARA)
+    #define SCARA_PRINTABLE_RADIUS (TPARA_LINKAGE_1 + TPARA_LINKAGE_2)
+  #else
+    #define QUICK_HOME
+    #define SCARA_PRINTABLE_RADIUS (SCARA_LINKAGE_1 + SCARA_LINKAGE_2)
+>>>>>>> master
   #endif
 #endif
 
@@ -378,6 +409,10 @@
  */
 #if ENABLED(DELTA)
   #undef Z_SAFE_HOMING
+<<<<<<< HEAD
+=======
+  #undef SLOWDOWN
+>>>>>>> master
 #endif
 
 #ifndef MESH_INSET
@@ -2250,7 +2285,11 @@
 #define IS_Z3_ENDSTOP(A,M) (ENABLED(Z_MULTI_ENDSTOPS) && NUM_Z_STEPPERS >= 3 && Z3_USE_ENDSTOP == _##A##M##_)
 #define IS_Z4_ENDSTOP(A,M) (ENABLED(Z_MULTI_ENDSTOPS) && NUM_Z_STEPPERS >= 4 && Z4_USE_ENDSTOP == _##A##M##_)
 
+<<<<<<< HEAD
 #define _HAS_STOP(A,M) (HAS_##A##_AXIS && PIN_EXISTS(A##_##M) && !IS_PROBE_PIN(A,M) && !IS_X2_ENDSTOP(A,M) && !IS_Y2_ENDSTOP(A,M) && !IS_Z2_ENDSTOP(A,M) && !IS_Z3_ENDSTOP(A,M) && !IS_Z4_ENDSTOP(A,M))
+=======
+#define _HAS_STOP(A,M) (PIN_EXISTS(A##_##M) && !IS_PROBE_PIN(A,M) && !IS_X2_ENDSTOP(A,M) && !IS_Y2_ENDSTOP(A,M) && !IS_Z2_ENDSTOP(A,M) && !IS_Z3_ENDSTOP(A,M) && !IS_Z4_ENDSTOP(A,M))
+>>>>>>> master
 #if _HAS_STOP(X,MIN)
   #define HAS_X_MIN 1
 #endif
@@ -2471,7 +2510,10 @@
   #define BED_MAX_TARGET (BED_MAXTEMP - (BED_OVERSHOOT))
 #else
   #undef PIDTEMPBED
+<<<<<<< HEAD
   #undef PREHEAT_BEFORE_LEVELING
+=======
+>>>>>>> master
 #endif
 
 #if HAS_TEMP_COOLER && PIN_EXISTS(COOLER)
@@ -2506,6 +2548,7 @@
   #define HAS_PID_HEATING 1
 #endif
 
+<<<<<<< HEAD
 #if ENABLED(DWIN_LCD_PROUI)
   #if EITHER(PIDTEMP, PIDTEMPBED)
     #define DWIN_PID_TUNE 1
@@ -2515,6 +2558,8 @@
   #endif
 #endif
 
+=======
+>>>>>>> master
 // Thermal protection
 #if !HAS_HEATED_BED
   #undef THERMAL_PROTECTION_BED
@@ -3054,7 +3099,11 @@
  */
 #if !HAS_FAN
   #undef ADAPTIVE_FAN_SLOWING
+<<<<<<< HEAD
   #undef TEMP_TUNING_MAINTAIN_FAN
+=======
+  #undef NO_FAN_SLOWING_IN_PID_TUNING
+>>>>>>> master
 #endif
 #if !BOTH(HAS_BED_PROBE, HAS_FAN)
   #undef PROBING_FANS_OFF
@@ -3091,10 +3140,14 @@
 /**
  * Only constrain Z on DELTA / SCARA machines
  */
+<<<<<<< HEAD
 #if ENABLED(POLAR)
   #undef MIN_SOFTWARE_ENDSTOP_Y
   #undef MAX_SOFTWARE_ENDSTOP_Y
 #elif IS_KINEMATIC
+=======
+#if IS_KINEMATIC
+>>>>>>> master
   #undef MIN_SOFTWARE_ENDSTOP_X
   #undef MIN_SOFTWARE_ENDSTOP_Y
   #undef MAX_SOFTWARE_ENDSTOP_X
@@ -3165,7 +3218,11 @@
 #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
   #if IS_KINEMATIC
     // Probing points may be verified at compile time within the radius
+<<<<<<< HEAD
     // using static_assert(HYPOT2(X2-X1,Y2-Y1)<=sq(PRINTABLE_RADIUS),"bad probe point!")
+=======
+    // using static_assert(HYPOT2(X2-X1,Y2-Y1)<=sq(DELTA_PRINTABLE_RADIUS),"bad probe point!")
+>>>>>>> master
     // so that may be added to SanityCheck.h in the future.
     #define _MESH_MIN_X (X_MIN_BED + MESH_INSET)
     #define _MESH_MIN_Y (Y_MIN_BED + MESH_INSET)
@@ -3339,7 +3396,11 @@
 #endif
 
 // Number of VFAT entries used. Each entry has 13 UTF-16 characters
+<<<<<<< HEAD
 #if ANY(SCROLL_LONG_FILENAMES, HAS_DWIN_E3V2, TFT_COLOR_UI)
+=======
+#if EITHER(SCROLL_LONG_FILENAMES, HAS_DWIN_E3V2)
+>>>>>>> master
   #define MAX_VFAT_ENTRIES (5)
 #else
   #define MAX_VFAT_ENTRIES (2)

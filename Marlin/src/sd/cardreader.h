@@ -116,7 +116,11 @@ public:
 
   static void changeMedia(DiskIODriver *_driver) { driver = _driver; }
 
+<<<<<<< HEAD
   static MediaFile getroot() { return root; }
+=======
+  static SdFile getroot() { return root; }
+>>>>>>> master
 
   static void mount();
   static void release();
@@ -190,12 +194,20 @@ public:
    * Relative paths apply to the workDir.
    *
    * update_cwd: Pass 'true' to update the workDir on success.
+<<<<<<< HEAD
    *   inDirPtr: On exit your pointer points to the target MediaFile.
+=======
+   *   inDirPtr: On exit your pointer points to the target SdFile.
+>>>>>>> master
    *             A nullptr indicates failure.
    *       path: Start with '/' for abs path. End with '/' to get a folder ref.
    *       echo: Set 'true' to print the path throughout the loop.
    */
+<<<<<<< HEAD
   static const char* diveToFile(const bool update_cwd, MediaFile* &inDirPtr, const char * const path, const bool echo=false);
+=======
+  static const char* diveToFile(const bool update_cwd, SdFile* &inDirPtr, const char * const path, const bool echo=false);
+>>>>>>> master
 
   #if ENABLED(SDCARD_SORT_ALPHA)
     static void presort();
@@ -223,7 +235,11 @@ public:
 
   // Current Working Dir - Set by cd, cdup, cdroot, and diveToFile(true, ...)
   static char* getWorkDirName()  { workDir.getDosName(filename); return filename; }
+<<<<<<< HEAD
   static MediaFile& getWorkDir()    { return workDir.isOpen() ? workDir : root; }
+=======
+  static SdFile& getWorkDir()    { return workDir.isOpen() ? workDir : root; }
+>>>>>>> master
 
   // Print File stats
   static uint32_t getFileSize()  { return filesize; }
@@ -262,7 +278,11 @@ private:
   //
   // Working directory and parents
   //
+<<<<<<< HEAD
   static MediaFile root, workDir, workDirParents[MAX_DIR_DEPTH];
+=======
+  static SdFile root, workDir, workDirParents[MAX_DIR_DEPTH];
+>>>>>>> master
   static uint8_t workDirDepth;
 
   //
@@ -322,8 +342,13 @@ private:
   #endif // SDCARD_SORT_ALPHA
 
   static DiskIODriver *driver;
+<<<<<<< HEAD
   static MarlinVolume volume;
   static MediaFile file;
+=======
+  static SdVolume volume;
+  static SdFile file;
+>>>>>>> master
 
   static uint32_t filesize, // Total size of the current file, in bytes
                   sdpos;    // Index most recently read (one behind file.getPos)
@@ -341,11 +366,18 @@ private:
   // Directory items
   //
   static bool is_visible_entity(const dir_t &p OPTARG(CUSTOM_FIRMWARE_UPLOAD, const bool onlyBin=false));
+<<<<<<< HEAD
   static int countItems(MediaFile dir);
   static void selectByIndex(MediaFile dir, const uint8_t index);
   static void selectByName(MediaFile dir, const char * const match);
   static void printListing(
     MediaFile parent, const char * const prepend, const uint8_t lsflags
+=======
+  static int countItems(SdFile dir);
+  static void selectByIndex(SdFile dir, const uint8_t index);
+  static void selectByName(SdFile dir, const char * const match);
+  static void printListing(SdFile parent, const char * const prepend, const uint8_t lsflags
+>>>>>>> master
     OPTARG(LONG_FILENAME_HOST_SUPPORT, const char * const prependLong=nullptr)
   );
 

@@ -22,7 +22,11 @@
 
 #include "../../../../inc/MarlinConfigPre.h"
 
+<<<<<<< HEAD
 #if DGUS_LCD_UI_MKS
+=======
+#if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
 
 #include "DGUSDisplayDef.h"
 #include "../DGUSDisplay.h"

@@ -167,7 +167,11 @@ void machine_setting_disp() {
     machine_menu.Extrude_Min_Temper   = EXTRUD_MIN_TEMPER_CN;
 
     machine_menu.HotbedConfTitle      = HOTBED_CONF_TITLE_CN;
+<<<<<<< HEAD
     machine_menu.HotbedAdjustType     = HOTBED_ADJUST_CN;
+=======
+    machine_menu.HotbedAjustType      = HOTBED_ADJUST_CN;
+>>>>>>> master
     machine_menu.HotbedMinTemperature = HOTBED_MIN_TEMPERATURE_CN;
     machine_menu.HotbedMaxTemperature = HOTBED_MAX_TEMPERATURE_CN;
 
@@ -395,7 +399,11 @@ void machine_setting_disp() {
     machine_menu.Extrude_Min_Temper   = EXTRUD_MIN_TEMPER_T_CN;
 
     machine_menu.HotbedConfTitle      = HOTBED_CONF_TITLE_T_CN;
+<<<<<<< HEAD
     machine_menu.HotbedAdjustType     = HOTBED_ADJUST_T_CN;
+=======
+    machine_menu.HotbedAjustType      = HOTBED_ADJUST_T_CN;
+>>>>>>> master
     machine_menu.HotbedMinTemperature = HOTBED_MIN_TEMPERATURE_T_CN;
     machine_menu.HotbedMaxTemperature = HOTBED_MAX_TEMPERATURE_T_CN;
 
@@ -627,7 +635,11 @@ void machine_setting_disp() {
 
     machine_menu.HotbedEnable         = HOTBED_ENABLE_EN;
     machine_menu.HotbedConfTitle      = HOTBED_CONF_TITLE_EN;
+<<<<<<< HEAD
     machine_menu.HotbedAdjustType     = HOTBED_ADJUST_EN;
+=======
+    machine_menu.HotbedAjustType      = HOTBED_ADJUST_EN;
+>>>>>>> master
     machine_menu.HotbedMinTemperature = HOTBED_MIN_TEMPERATURE_EN;
     machine_menu.HotbedMaxTemperature = HOTBED_MAX_TEMPERATURE_EN;
 

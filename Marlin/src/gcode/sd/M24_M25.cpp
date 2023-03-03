@@ -41,7 +41,11 @@
   #include "../../feature/powerloss.h"
 #endif
 
+<<<<<<< HEAD
 #if DGUS_LCD_UI_MKS
+=======
+#if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
   #include "../../lcd/extui/dgus/DGUSDisplayDef.h"
 #endif
 
@@ -52,7 +56,11 @@
  */
 void GcodeSuite::M24() {
 
+<<<<<<< HEAD
   #if DGUS_LCD_UI_MKS
+=======
+  #if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
     if ((print_job_timer.isPaused() || print_job_timer.isRunning()) && !parser.seen("ST"))
       MKS_resume_print_move();
   #endif

@@ -24,17 +24,25 @@
 /**
  * DWIN Enhanced implementation for PRO UI
  * Author: Miguel A. Risco-Castillo (MRISCOC)
+<<<<<<< HEAD
  * Version: 3.21.2
  * Date: 2022/12/02
  */
 
 #include "../../../inc/MarlinConfig.h"
 
+=======
+ * Version: 3.17.2
+ * Date: 2022/04/08
+ */
+
+>>>>>>> master
 #include "dwin_defines.h"
 #include "dwinui.h"
 #include "../common/encoder.h"
 #include "../../../libs/BL24CXX.h"
 
+<<<<<<< HEAD
 #if EITHER(BABYSTEPPING, HAS_BED_PROBE)
   #define HAS_ZOFFSET_ITEM 1
   #if !HAS_BED_PROBE
@@ -50,6 +58,9 @@ namespace GET_LANG(LCD_LANGUAGE) {
     REPEAT_S(4, PREHEAT_COUNT, _MSG_PREHEAT)
   #endif
 }
+=======
+#include "../../../inc/MarlinConfig.h"
+>>>>>>> master
 
 enum processID : uint8_t {
   // Process ID
@@ -60,6 +71,10 @@ enum processID : uint8_t {
   SetIntNoDraw,
   SetFloat,
   SetPFloat,
+<<<<<<< HEAD
+=======
+  SelectFile,
+>>>>>>> master
   PrintProcess,
   Popup,
   Leveling,
@@ -70,6 +85,7 @@ enum processID : uint8_t {
   WaitResponse,
   Homing,
   PidProcess,
+<<<<<<< HEAD
   MPCProcess,
   NothingToDo
 };
@@ -94,11 +110,25 @@ enum processID : uint8_t {
   };
 
 #endif
+=======
+  NothingToDo
+};
+
+enum pidresult_t : uint8_t {
+  PID_BAD_EXTRUDER_NUM,
+  PID_TEMP_TOO_HIGH,
+  PID_TUNING_TIMEOUT,
+  PID_EXTR_START,
+  PID_BED_START,
+  PID_DONE
+};
+>>>>>>> master
 
 #define DWIN_CHINESE 123
 #define DWIN_ENGLISH 0
 
 typedef struct {
+<<<<<<< HEAD
   // Color settings
   uint16_t Background_Color;
   uint16_t Cursor_Color;
@@ -157,17 +187,31 @@ typedef struct {
   #if DWIN_PID_TUNE
     tempcontrol_t pidresult = PID_DONE;
   #endif
+=======
+  int8_t Color[3];                    // Color components
+  pidresult_t pidresult   = PID_DONE;
+>>>>>>> master
   uint8_t Select          = 0;        // Auxiliary selector variable
   AxisEnum axis           = X_AXIS;   // Axis Select
 } HMI_value_t;
 
 typedef struct {
   uint8_t language;
+<<<<<<< HEAD
   bool printing_flag:1; // sd or host printing
   bool abort_flag:1;    // sd or host was aborted
   bool pause_flag:1;    // printing is paused
   bool percent_flag:1;  // percent was override by M73
   bool remain_flag:1;   // remain was override by M73
+=======
+  bool percent_flag:1;  // percent was override by M73
+  bool remain_flag:1;   // remain was override by M73
+  bool pause_flag:1;    // printing is paused
+  bool pause_action:1;  // flag a pause action
+  bool abort_flag:1;    // printing is aborting
+  bool abort_action:1;  // flag a aborting action
+  bool print_finish:1;  // print was finished
+>>>>>>> master
   bool select_flag:1;   // Popup button selected
   bool home_flag:1;     // homing in course
   bool heat_flag:1;     // 0: heating done  1: during heating
@@ -187,7 +231,10 @@ extern millis_t dwin_heat_time;
 #endif
 
 // Tool Functions
+<<<<<<< HEAD
 uint32_t GetHash(char * str);
+=======
+>>>>>>> master
 #if ENABLED(EEPROM_SETTINGS)
   void WriteEeprom();
   void ReadEeprom();
@@ -201,6 +248,7 @@ void DisableMotors();
 void AutoLev();
 void AutoHome();
 #if HAS_PREHEAT
+<<<<<<< HEAD
   #define _DOPREHEAT(N) void DoPreheat##N();
   REPEAT_1(PREHEAT_COUNT, _DOPREHEAT)
 #endif
@@ -209,6 +257,17 @@ void DoCoolDown();
   void HotendPID();
 #endif
 #if ENABLED(PIDTEMPBED)
+=======
+  void DoPreheat0();
+  void DoPreheat1();
+  void DoPreheat2();
+#endif
+void DoCoolDown();
+#if HAS_HOTEND
+  void HotendPID();
+#endif
+#if HAS_HEATED_BED
+>>>>>>> master
   void BedPID();
 #endif
 #if ENABLED(BAUD_RATE_GCODE)
@@ -228,6 +287,7 @@ void ParkHead();
   void ApplyLEDColor();
 #endif
 #if ENABLED(AUTO_BED_LEVELING_UBL)
+<<<<<<< HEAD
   void UBLMeshTilt();
   bool UBLValidMesh();
   void UBLMeshSave();
@@ -238,6 +298,12 @@ void ParkHead();
 #endif
 #if !HAS_BED_PROBE
   void HomeZandDisable();
+=======
+  void UBLTiltMesh();
+  bool UBLValidMesh();
+  void UBLSaveMesh();
+  void UBLLoadMesh();
+>>>>>>> master
 #endif
 
 // Other
@@ -248,7 +314,11 @@ void Goto_PowerLossRecovery();
 void Goto_ConfirmToPrint();
 void DWIN_Draw_Dashboard(const bool with_update); // Status Area
 void Draw_Main_Area();      // Redraw main area
+<<<<<<< HEAD
 void DWIN_DrawStatusLine(const char *text = ""); // Draw simple status text
+=======
+void DWIN_DrawStatusLine(); // Draw simple status text
+>>>>>>> master
 void DWIN_RedrawDash();     // Redraw Dash and Status line
 void DWIN_RedrawScreen();   // Redraw all screen elements
 void HMI_MainMenu();        // Main process screen
@@ -257,6 +327,10 @@ void HMI_Printing();        // Print page
 void HMI_ReturnScreen();    // Return to previous screen before popups
 void HMI_WaitForUser();
 void HMI_SaveProcessID(const uint8_t id);
+<<<<<<< HEAD
+=======
+void HMI_SDCardInit();
+>>>>>>> master
 void HMI_SDCardUpdate();
 void EachMomentUpdate();
 void update_variable();
@@ -266,11 +340,20 @@ void DWIN_CheckStatusMessage();
 void DWIN_HomingStart();
 void DWIN_HomingDone();
 #if HAS_MESH
+<<<<<<< HEAD
   void DWIN_MeshUpdate(const int8_t cpos, const int8_t tpos, const_float_t zval);
 #endif
 void DWIN_LevelingStart();
 void DWIN_LevelingDone();
 void DWIN_Print_Started();
+=======
+  void DWIN_MeshUpdate(const int8_t xpos, const int8_t ypos, const_float_t zval);
+#endif
+void DWIN_LevelingStart();
+void DWIN_LevelingDone();
+void DWIN_PidTuning(pidresult_t result);
+void DWIN_Print_Started(const bool sd=false);
+>>>>>>> master
 void DWIN_Print_Pause();
 void DWIN_Print_Resume();
 void DWIN_Print_Finished();
@@ -314,7 +397,10 @@ void DWIN_RebootScreen();
 #endif
 
 // Menu drawing functions
+<<<<<<< HEAD
 void Draw_Print_File_Menu();
+=======
+>>>>>>> master
 void Draw_Control_Menu();
 void Draw_AdvancedSettings_Menu();
 void Draw_Prepare_Menu();
@@ -347,6 +433,17 @@ void Draw_Motion_Menu();
 #if ENABLED(MESH_BED_LEVELING)
   void Draw_ManualMesh_Menu();
 #endif
+<<<<<<< HEAD
+=======
+#if HAS_HOTEND
+  void Draw_Preheat1_Menu();
+  void Draw_Preheat2_Menu();
+  void Draw_Preheat3_Menu();
+  #if ENABLED(PIDTEMP)
+    void Draw_HotendPID_Menu();
+  #endif
+#endif
+>>>>>>> master
 void Draw_Temperature_Menu();
 void Draw_MaxSpeed_Menu();
 void Draw_MaxAccel_Menu();
@@ -354,6 +451,12 @@ void Draw_MaxAccel_Menu();
   void Draw_MaxJerk_Menu();
 #endif
 void Draw_Steps_Menu();
+<<<<<<< HEAD
+=======
+#if ENABLED(PIDTEMPBED)
+  void Draw_BedPID_Menu();
+#endif
+>>>>>>> master
 #if EITHER(HAS_BED_PROBE, BABYSTEPPING)
   void Draw_ZOffsetWiz_Menu();
 #endif
@@ -369,6 +472,7 @@ void Draw_Steps_Menu();
     void Draw_EditMesh_Menu();
   #endif
 #endif
+<<<<<<< HEAD
 
 // PID
 #if DWIN_PID_TUNE
@@ -388,3 +492,5 @@ void Draw_Steps_Menu();
   void DWIN_MPCTuning(tempcontrol_t result);
   void Draw_HotendMPC_Menu();
 #endif
+=======
+>>>>>>> master

@@ -2776,6 +2776,7 @@ void Stepper::init() {
 
   // Init Enable Pins - steppers default to disabled.
   #if HAS_X_ENABLE
+<<<<<<< HEAD
     #ifndef X_ENABLE_INIT_STATE
       #define X_ENABLE_INIT_STATE !X_ENABLE_ON
     #endif
@@ -2814,6 +2815,37 @@ void Stepper::init() {
     #if NUM_Z_STEPPERS >= 4 && HAS_Z4_ENABLE
       Z4_ENABLE_INIT();
       if (Z_ENABLE_INIT_STATE) Z4_ENABLE_WRITE(Z_ENABLE_INIT_STATE);
+=======
+    X_ENABLE_INIT();
+    if (!X_ENABLE_ON) X_ENABLE_WRITE(HIGH);
+    #if BOTH(HAS_X2_STEPPER, HAS_X2_ENABLE)
+      X2_ENABLE_INIT();
+      if (!X_ENABLE_ON) X2_ENABLE_WRITE(HIGH);
+    #endif
+  #endif
+  #if HAS_Y_ENABLE
+    Y_ENABLE_INIT();
+    if (!Y_ENABLE_ON) Y_ENABLE_WRITE(HIGH);
+    #if BOTH(HAS_DUAL_Y_STEPPERS, HAS_Y2_ENABLE)
+      Y2_ENABLE_INIT();
+      if (!Y_ENABLE_ON) Y2_ENABLE_WRITE(HIGH);
+    #endif
+  #endif
+  #if HAS_Z_ENABLE
+    Z_ENABLE_INIT();
+    if (!Z_ENABLE_ON) Z_ENABLE_WRITE(HIGH);
+    #if NUM_Z_STEPPERS >= 2 && HAS_Z2_ENABLE
+      Z2_ENABLE_INIT();
+      if (!Z_ENABLE_ON) Z2_ENABLE_WRITE(HIGH);
+    #endif
+    #if NUM_Z_STEPPERS >= 3 && HAS_Z3_ENABLE
+      Z3_ENABLE_INIT();
+      if (!Z_ENABLE_ON) Z3_ENABLE_WRITE(HIGH);
+    #endif
+    #if NUM_Z_STEPPERS >= 4 && HAS_Z4_ENABLE
+      Z4_ENABLE_INIT();
+      if (!Z_ENABLE_ON) Z4_ENABLE_WRITE(HIGH);
+>>>>>>> master
     #endif
   #endif
   #if HAS_I_ENABLE
@@ -2841,6 +2873,7 @@ void Stepper::init() {
     if (!W_ENABLE_ON) W_ENABLE_WRITE(HIGH);
   #endif
   #if HAS_E0_ENABLE
+<<<<<<< HEAD
     #ifndef E_ENABLE_INIT_STATE
       #define E_ENABLE_INIT_STATE !E_ENABLE_ON
     #endif
@@ -2898,6 +2931,38 @@ void Stepper::init() {
     #endif
     E7_ENABLE_INIT();
     if (E7_ENABLE_INIT_STATE) E7_ENABLE_WRITE(E7_ENABLE_INIT_STATE);
+=======
+    E0_ENABLE_INIT();
+    if (!E_ENABLE_ON) E0_ENABLE_WRITE(HIGH);
+  #endif
+  #if HAS_E1_ENABLE
+    E1_ENABLE_INIT();
+    if (!E_ENABLE_ON) E1_ENABLE_WRITE(HIGH);
+  #endif
+  #if HAS_E2_ENABLE
+    E2_ENABLE_INIT();
+    if (!E_ENABLE_ON) E2_ENABLE_WRITE(HIGH);
+  #endif
+  #if HAS_E3_ENABLE
+    E3_ENABLE_INIT();
+    if (!E_ENABLE_ON) E3_ENABLE_WRITE(HIGH);
+  #endif
+  #if HAS_E4_ENABLE
+    E4_ENABLE_INIT();
+    if (!E_ENABLE_ON) E4_ENABLE_WRITE(HIGH);
+  #endif
+  #if HAS_E5_ENABLE
+    E5_ENABLE_INIT();
+    if (!E_ENABLE_ON) E5_ENABLE_WRITE(HIGH);
+  #endif
+  #if HAS_E6_ENABLE
+    E6_ENABLE_INIT();
+    if (!E_ENABLE_ON) E6_ENABLE_WRITE(HIGH);
+  #endif
+  #if HAS_E7_ENABLE
+    E7_ENABLE_INIT();
+    if (!E_ENABLE_ON) E7_ENABLE_WRITE(HIGH);
+>>>>>>> master
   #endif
 
   #define _STEP_INIT(AXIS) AXIS ##_STEP_INIT()
@@ -3020,7 +3085,11 @@ void Stepper::init() {
    * Calculate a fixed point factor to apply to the signal and its echo
    * when shaping an axis.
    */
+<<<<<<< HEAD
   void Stepper::set_shaping_damping_ratio(const AxisEnum axis, const_float_t zeta) {
+=======
+  void Stepper::set_shaping_damping_ratio(const AxisEnum axis, const float zeta) {
+>>>>>>> master
     // from the damping ratio, get a factor that can be applied to advance_dividend for fixed point maths
     // for ZV, we use amplitudes 1/(1+K) and K/(1+K) where K = exp(-zeta * M_PI / sqrt(1.0f - zeta * zeta))
     // which can be converted to 1:7 fixed point with an excellent fit with a 3rd order polynomial
@@ -3029,9 +3098,15 @@ void Stepper::init() {
     else if (zeta >= 1.0f) factor2 = 0.0f;
     else {
       factor2 = 64.44056192 + -99.02008832 * zeta;
+<<<<<<< HEAD
       const_float_t zeta2 = zeta * zeta;
       factor2 += -7.58095488 * zeta2;
       const_float_t zeta3 = zeta2 * zeta;
+=======
+      const float zeta2 = zeta * zeta;
+      factor2 += -7.58095488 * zeta2;
+      const float zeta3 = zeta2 * zeta;
+>>>>>>> master
       factor2 += 43.073216 * zeta3;
       factor2 = floor(factor2);
     }
@@ -3049,9 +3124,15 @@ void Stepper::init() {
     return -1;
   }
 
+<<<<<<< HEAD
   void Stepper::set_shaping_frequency(const AxisEnum axis, const_float_t freq) {
     // enabling or disabling shaping whilst moving can result in lost steps
     planner.synchronize();
+=======
+  void Stepper::set_shaping_frequency(const AxisEnum axis, const float freq) {
+    // enabling or disabling shaping whilst moving can result in lost steps
+    Planner::synchronize();
+>>>>>>> master
 
     const bool was_on = hal.isr_state();
     hal.isr_off();
@@ -3248,7 +3329,11 @@ int32_t Stepper::triggered_position(const AxisEnum axis) {
 #if ANY(CORE_IS_XY, CORE_IS_XZ, MARKFORGED_XY, MARKFORGED_YX, IS_SCARA, DELTA)
   #define SAYS_A 1
 #endif
+<<<<<<< HEAD
 #if ANY(CORE_IS_XY, CORE_IS_YZ, MARKFORGED_XY, MARKFORGED_YX, IS_SCARA, DELTA, POLAR)
+=======
+#if ANY(CORE_IS_XY, CORE_IS_YZ, MARKFORGED_XY, MARKFORGED_YX, IS_SCARA, DELTA)
+>>>>>>> master
   #define SAYS_B 1
 #endif
 #if ANY(CORE_IS_XZ, CORE_IS_YZ, DELTA)

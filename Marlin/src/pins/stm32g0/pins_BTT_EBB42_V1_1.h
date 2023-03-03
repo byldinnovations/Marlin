@@ -21,8 +21,11 @@
  */
 #pragma once
 
+<<<<<<< HEAD
 #include "env_validate.h"
 
+=======
+>>>>>>> master
 /** CAUTION **
  * This board definition is to facilitate support for a Filament Extrusion
  * devices, used to convert waste plastic into 3D printable filament.

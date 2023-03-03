@@ -249,6 +249,10 @@ namespace Language_zh_TW {
   LSTR MSG_LCD_ON                         = _UxGT("開 ");     // "On"
   LSTR MSG_LCD_OFF                        = _UxGT("關 ");     // "Off"
 
+<<<<<<< HEAD
+=======
+  LSTR MSG_SELECT                         = _UxGT("選擇");     // "Select"
+>>>>>>> master
   LSTR MSG_SELECT_E                       = _UxGT("選擇 *");
   LSTR MSG_ACC                            = _UxGT("加速度");     // "Accel" acceleration
   LSTR MSG_JERK                           = _UxGT("抖動速率");     // "Jerk"
@@ -369,7 +373,11 @@ namespace Language_zh_TW {
   LSTR MSG_BLTOUCH_STOW                   = _UxGT("裝載BLTouch");     // "Stow BLTouch"
   LSTR MSG_BLTOUCH_DEPLOY                 = _UxGT("部署BLTouch");     // "Deploy BLTouch"
 
+<<<<<<< HEAD
   LSTR MSG_HOME_FIRST                     = _UxGT("歸位 %s 先");     // "Home ... first"
+=======
+  LSTR MSG_HOME_FIRST                     = _UxGT("歸位 %s%s%s 先");     // "Home ... first"
+>>>>>>> master
   LSTR MSG_ZPROBE_OFFSETS                 = _UxGT("探針偏移");   //Probe Offsets
   LSTR MSG_ZPROBE_XOFFSET                 = _UxGT("探針X偏移量");   //Probe X Offset
   LSTR MSG_ZPROBE_YOFFSET                 = _UxGT("探針Y偏移量");   //Probe Y Offset

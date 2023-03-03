@@ -243,6 +243,7 @@ void menu_main() {
   START_MENU();
   BACK_ITEM(MSG_INFO_SCREEN);
 
+<<<<<<< HEAD
   #if ENABLED(SDSUPPORT) && !defined(MEDIA_MENU_AT_TOP) && !HAS_ENCODER_WHEEL
     #define MEDIA_MENU_AT_TOP
   #endif
@@ -275,6 +276,15 @@ void menu_main() {
   else {
     #if BOTH(SDSUPPORT, MEDIA_MENU_AT_TOP)
       // BEGIN MEDIA MENU
+=======
+  #if ENABLED(SDSUPPORT)
+
+    #if !defined(MEDIA_MENU_AT_TOP) && !HAS_ENCODER_WHEEL
+      #define MEDIA_MENU_AT_TOP
+    #endif
+
+    auto sdcard_menu_items = [&]{
+>>>>>>> master
       #if ENABLED(MENU_ADDAUTOSTART)
         ACTION_ITEM(MSG_RUN_AUTO_FILES, card.autofile_begin); // Run Auto Files
       #endif
@@ -282,10 +292,14 @@ void menu_main() {
       if (card_detected) {
         if (!card_open) {
           #if HAS_SD_DETECT
+<<<<<<< HEAD
             GCODES_ITEM(MSG_CHANGE_MEDIA, F("M21" TERN_(MULTI_VOLUME, "S"))); // M21 Change Media
             #if ENABLED(MULTI_VOLUME)
               GCODES_ITEM(MSG_ATTACH_USB_MEDIA, F("M21U")); // M21 Attach USB Media
             #endif
+=======
+            GCODES_ITEM(MSG_CHANGE_MEDIA, F("M21"));        // M21 Change Media
+>>>>>>> master
           #else                                             // - or -
             ACTION_ITEM(MSG_RELEASE_MEDIA, []{              // M22 Release Media
               queue.inject(F("M22"));
@@ -303,6 +317,7 @@ void menu_main() {
         #if HAS_SD_DETECT
           ACTION_ITEM(MSG_NO_MEDIA, nullptr);               // "No Media"
         #else
+<<<<<<< HEAD
           GCODES_ITEM(MSG_ATTACH_MEDIA, F("M21" TERN_(MULTI_VOLUME, "S"))); // M21 Attach Media
           #if ENABLED(MULTI_VOLUME)
             GCODES_ITEM(MSG_ATTACH_USB_MEDIA, F("M21U"));   // M21 Attach USB Media
@@ -310,6 +325,44 @@ void menu_main() {
         #endif
       }
       // END MEDIA MENU
+=======
+          GCODES_ITEM(MSG_ATTACH_MEDIA, F("M21"));          // M21 Attach Media
+        #endif
+      }
+    };
+
+  #endif
+
+  if (busy) {
+    #if MACHINE_CAN_PAUSE
+      ACTION_ITEM(MSG_PAUSE_PRINT, ui.pause_print);
+    #endif
+    #if MACHINE_CAN_STOP
+      SUBMENU(MSG_STOP_PRINT, []{
+        MenuItem_confirm::select_screen(
+          GET_TEXT_F(MSG_BUTTON_STOP), GET_TEXT_F(MSG_BACK),
+          ui.abort_print, nullptr,
+          GET_TEXT_F(MSG_STOP_PRINT), (const char *)nullptr, F("?")
+        );
+      });
+    #endif
+
+    #if ENABLED(GCODE_REPEAT_MARKERS)
+      if (repeat.is_active())
+        ACTION_ITEM(MSG_END_LOOPS, repeat.cancel);
+    #endif
+
+    SUBMENU(MSG_TUNE, menu_tune);
+
+    #if ENABLED(CANCEL_OBJECTS) && DISABLED(SLIM_LCD_MENUS)
+      SUBMENU(MSG_CANCEL_OBJECT, []{ editable.int8 = -1; ui.goto_screen(menu_cancelobject); });
+    #endif
+  }
+  else {
+
+    #if BOTH(SDSUPPORT, MEDIA_MENU_AT_TOP)
+      sdcard_menu_items();
+>>>>>>> master
     #endif
 
     if (TERN0(MACHINE_CAN_PAUSE, printingIsPaused()))
@@ -389,6 +442,7 @@ void menu_main() {
   #endif
 
   #if ENABLED(SDSUPPORT) && DISABLED(MEDIA_MENU_AT_TOP)
+<<<<<<< HEAD
     // BEGIN MEDIA MENU
     #if ENABLED(MENU_ADDAUTOSTART)
       ACTION_ITEM(MSG_RUN_AUTO_FILES, card.autofile_begin); // Run Auto Files
@@ -425,6 +479,9 @@ void menu_main() {
       #endif
     }
     // END MEDIA MENU
+=======
+    sdcard_menu_items();
+>>>>>>> master
   #endif
 
   #if HAS_SERVICE_INTERVALS

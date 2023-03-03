@@ -315,7 +315,11 @@ void MarlinUI::draw_status_screen() {
     // Draw a frame around the x/y/z values
     DWIN_Draw_Rectangle(0, Select_Color,
       #if ENABLED(DWIN_MARLINUI_PORTRAIT)
+<<<<<<< HEAD
         0, 193, LCD_PIXEL_WIDTH - 1, 260
+=======
+        0, 193, LCD_PIXEL_WIDTH, 260
+>>>>>>> master
       #else
         0, 115, LCD_PIXEL_WIDTH - 1, 152
       #endif

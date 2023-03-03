@@ -712,7 +712,11 @@
 #endif
 
 #if ENABLED(EMIT_CREALITY_422_WARNING) && DISABLED(NO_CREALITY_422_DRIVER_WARNING)
+<<<<<<< HEAD
   #warning "Creality 4.2.2 boards come with a variety of stepper drivers. Check the board label (typically on SD Card module) and set the correct *_DRIVER_TYPE! (C=HR4988, E=A4988, A=TMC2208, B=TMC2209, H=TMC2225, H8=HR4988). (Define NO_CREALITY_422_DRIVER_WARNING to suppress this warning.)"
+=======
+  #warning "Creality 4.2.2 boards come with a variety of stepper drivers. Check the board label and set the correct *_DRIVER_TYPE! (C=HR4988, E=A4988, A=TMC2208, B=TMC2209, H=TMC2225). (Define NO_CREALITY_422_DRIVER_WARNING to suppress this warning.)"
+>>>>>>> master
 #endif
 
 #if PRINTCOUNTER_SYNC
@@ -783,6 +787,7 @@
 #if ENABLED(BD_SENSOR) && DISABLED(BABYSTEPPING)
   #warning "BABYSTEPPING is recommended with BD_SENSOR."
 #endif
+<<<<<<< HEAD
 
 /**
  * POLAR warnings
@@ -797,3 +802,5 @@
 #if HAS_SHAPING && ANY(CORE_IS_XY, MARKFORGED_XY, MARKFORGED_YX)
   #warning "Input Shaping for CORE / MARKFORGED kinematic axes is still experimental."
 #endif
+=======
+>>>>>>> master

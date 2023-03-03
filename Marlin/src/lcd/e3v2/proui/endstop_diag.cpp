@@ -23,13 +23,26 @@
 /**
  * DWIN Endstops diagnostic page for PRO UI
  * Author: Miguel A. Risco-Castillo (MRISCOC)
+<<<<<<< HEAD
  * Version: 1.3.3
  * Date: 2022/10/07
+=======
+ * Version: 1.2.2
+ * Date: 2022/02/24
+>>>>>>> master
  */
 
 #include "../../../inc/MarlinConfigPre.h"
 
+<<<<<<< HEAD
 #if BOTH(DWIN_LCD_PROUI, HAS_ESDIAG)
+=======
+#if ENABLED(DWIN_LCD_PROUI)
+
+#include "dwin_defines.h"
+
+#if HAS_ESDIAG
+>>>>>>> master
 
 #include "endstop_diag.h"
 
@@ -60,7 +73,11 @@ void draw_es_label(FSTR_P const flabel=nullptr) {
 void draw_es_state(const bool is_hit) {
   const uint8_t LM = 130;
   DWINUI::cursor.x = LM;
+<<<<<<< HEAD
   DWIN_Draw_Rectangle(1, HMI_data.PopupBg_Color, LM, DWINUI::cursor.y, LM + 100, DWINUI::cursor.y + 20);
+=======
+  DWIN_Draw_Rectangle(1, HMI_data.PopupBg_color, LM, DWINUI::cursor.y, LM + 100, DWINUI::cursor.y + 20);
+>>>>>>> master
   is_hit ? DWINUI::Draw_String(RGB(31,31,16), F(STR_ENDSTOP_HIT)) : DWINUI::Draw_String(RGB(16,63,16), F(STR_ENDSTOP_OPEN));
   DWINUI::MoveBy(0, 25);
 }
@@ -105,4 +122,9 @@ void ESDiagClass::Update() {
   DWIN_UpdateLCD();
 }
 
+<<<<<<< HEAD
 #endif // DWIN_LCD_PROUI && HAS_ESDIAG
+=======
+#endif // HAS_ESDIAG
+#endif // DWIN_LCD_PROUI
+>>>>>>> master

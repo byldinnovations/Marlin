@@ -192,6 +192,7 @@
 #define PROGRESS_BAR_WIDTH (LCD_PIXEL_WIDTH - PROGRESS_BAR_X)
 
 FORCE_INLINE void _draw_centered_temp(const celsius_t temp, const uint8_t tx, const uint8_t ty) {
+<<<<<<< HEAD
   const char *str;
   uint8_t len;
   if (temp >= 0) {
@@ -212,6 +213,16 @@ FORCE_INLINE void _draw_centered_temp(const celsius_t temp, const uint8_t tx, co
   }
   lcd_put_u8str(str);
   lcd_put_lchar(LCD_STR_DEGREE[0]);
+=======
+  if (temp < 0)
+    lcd_put_u8str(tx - 3 * (INFO_FONT_WIDTH) / 2 + 1, ty, F("err"));
+  else {
+    const char *str = i16tostr3rj(temp);
+    const uint8_t len = str[0] != ' ' ? 3 : str[1] != ' ' ? 2 : 1;
+    lcd_put_u8str(tx - len * (INFO_FONT_WIDTH) / 2 + 1, ty, &str[3-len]);
+    lcd_put_lchar(LCD_STR_DEGREE[0]);
+  }
+>>>>>>> master
 }
 
 #if DO_DRAW_FLOWMETER
@@ -456,12 +467,18 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
 }
 
 // Prepare strings for progress display
+<<<<<<< HEAD
 #if EITHER(HAS_EXTRA_PROGRESS, HAS_PRINT_PROGRESS)
   static MarlinUI::progress_t progress = 0;
   static char bufferc[13];
 #endif
 
 #if HAS_EXTRA_PROGRESS
+=======
+#if HAS_PRINT_PROGRESS
+  static MarlinUI::progress_t progress = 0;
+  static char bufferc[13];
+>>>>>>> master
 
   static void prepare_time_string(const duration_t &time, char prefix) {
     char str[13];
@@ -499,8 +516,12 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
       if (printJobOngoing())
         prepare_time_string(print_job_timer.duration(), 'E'); }
   #endif
+<<<<<<< HEAD
 
 #endif // HAS_EXTRA_PROGRESS
+=======
+#endif // HAS_PRINT_PROGRESS
+>>>>>>> master
 
 /**
  * Draw the Status Screen for a 128x64 DOGM (U8glib) display.

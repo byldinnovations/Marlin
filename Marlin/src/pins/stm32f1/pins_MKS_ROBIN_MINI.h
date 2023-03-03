@@ -149,6 +149,7 @@
  * If the screen stays white, disable 'LCD_RESET_PIN'
  * to let the bootloader init the screen.
  */
+<<<<<<< HEAD
 #if HAS_FSMC_TFT
 
   #define TFT_CS_PIN                        PD7   // NE4
@@ -158,11 +159,20 @@
 
   #define FSMC_CS_PIN                 TFT_CS_PIN  // NE4
   #define FSMC_RS_PIN                 TFT_RS_PIN  // A0
+=======
+#if EITHER(HAS_FSMC_GRAPHICAL_TFT, TFT_320x240)
+  #define FSMC_CS_PIN                       PD7   // NE4
+  #define FSMC_RS_PIN                       PD11  // A0
+
+  #define TFT_CS_PIN                 FSMC_CS_PIN
+  #define TFT_RS_PIN                 FSMC_RS_PIN
+>>>>>>> master
 
   #define LCD_USE_DMA_FSMC                        // Use DMA transfers to send data to the TFT
   #define FSMC_DMA_DEV                      DMA2
   #define FSMC_DMA_CHANNEL               DMA_CH5
 
+<<<<<<< HEAD
   #if NEED_TOUCH_PINS
     #define TOUCH_CS_PIN                    PC2   // SPI2_NSS
     #define TOUCH_SCK_PIN                   PB13  // SPI2_SCK
@@ -170,6 +180,17 @@
     #define TOUCH_MOSI_PIN                  PB15  // SPI2_MOSI
   #endif
 
+=======
+  #define LCD_RESET_PIN                     PC6   // FSMC_RST
+  #define LCD_BACKLIGHT_PIN                 PD13
+#endif
+
+#if BOTH(NEED_TOUCH_PINS, HAS_FSMC_GRAPHICAL_TFT) || ENABLED(TFT_320x240)
+  #define TOUCH_CS_PIN                      PC2   // SPI2_NSS
+  #define TOUCH_SCK_PIN                     PB13  // SPI2_SCK
+  #define TOUCH_MISO_PIN                    PB14  // SPI2_MISO
+  #define TOUCH_MOSI_PIN                    PB15  // SPI2_MOSI
+>>>>>>> master
 #endif
 
 #if ENABLED(TFT_320x240)                          // TFT32/28

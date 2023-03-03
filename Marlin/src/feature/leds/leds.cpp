@@ -95,6 +95,7 @@ void LEDLights::setup() {
         delay(500);
       }
     #endif // RGB_STARTUP_TEST
+<<<<<<< HEAD
 
   #elif BOTH(PCA9632, RGB_STARTUP_TEST)   // PCA9632 RGB_STARTUP_TEST
 
@@ -151,6 +152,9 @@ void LEDLights::setup() {
 
   #endif // PCA9632 && RGB_STARTUP_TEST
 
+=======
+  #endif
+>>>>>>> master
   TERN_(NEOPIXEL_LED, neo.init());
   TERN_(PCA9533, PCA9533_init());
   TERN_(LED_USER_PRESET_STARTUP, set_default());

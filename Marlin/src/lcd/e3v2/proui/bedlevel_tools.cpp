@@ -23,6 +23,7 @@
 /**
  * Bed Level Tools for Pro UI
  * Extended by: Miguel A. Risco-Castillo (MRISCOC)
+<<<<<<< HEAD
  * Version: 2.1.0
  * Date: 2022/08/27
  *
@@ -45,11 +46,28 @@
  */
 
 #include "../../../inc/MarlinConfigPre.h"
+=======
+ * Version: 2.0.0
+ * Date: 2022/05/23
+ *
+ * Based on the original work of: Henri-J-Norden
+ * https://github.com/Jyers/Marlin/pull/126
+ */
+
+#include "../../../inc/MarlinConfigPre.h"
+#include "bedlevel_tools.h"
+>>>>>>> master
 
 #if BOTH(DWIN_LCD_PROUI, HAS_LEVELING)
 
 #include "../../marlinui.h"
 #include "../../../core/types.h"
+<<<<<<< HEAD
+=======
+#include "dwin.h"
+#include "dwinui.h"
+#include "dwin_popup.h"
+>>>>>>> master
 #include "../../../feature/bedlevel/bedlevel.h"
 #include "../../../module/probe.h"
 #include "../../../gcode/gcode.h"
@@ -58,6 +76,7 @@
 #include "../../../libs/least_squares_fit.h"
 #include "../../../libs/vector_3.h"
 
+<<<<<<< HEAD
 #include "dwin.h"
 #include "dwinui.h"
 #include "dwin_popup.h"
@@ -66,6 +85,11 @@
 BedLevelToolsClass bedLevelTools;
 
 #if ENABLED(USE_UBL_VIEWER)
+=======
+BedLevelToolsClass BedLevelTools;
+
+#if USE_UBL_VIEWER
+>>>>>>> master
   bool BedLevelToolsClass::viewer_asymmetric_range = false;
   bool BedLevelToolsClass::viewer_print_value = false;
 #endif
@@ -168,6 +192,7 @@ void BedLevelToolsClass::manual_move(const uint8_t mesh_x, const uint8_t mesh_y,
   }
 }
 
+<<<<<<< HEAD
 // Move / Probe methods. As examples, not yet used.
 void BedLevelToolsClass::MoveToXYZ() {
   bedLevelTools.goto_mesh_value = true;
@@ -187,11 +212,32 @@ void BedLevelToolsClass::ProbeXY() {
     Clear,
     dtostrf(bedlevel.get_mesh_x(bedLevelTools.mesh_x), 1, 2, str_1),
     dtostrf(bedlevel.get_mesh_y(bedLevelTools.mesh_y), 1, 2, str_2)
+=======
+void BedLevelToolsClass::MoveToXYZ() {
+  BedLevelTools.goto_mesh_value = true;
+  BedLevelTools.manual_move(BedLevelTools.mesh_x, BedLevelTools.mesh_y, false);
+}
+void BedLevelToolsClass::MoveToXY() {
+  BedLevelTools.goto_mesh_value = false;
+  BedLevelTools.manual_move(BedLevelTools.mesh_x, BedLevelTools.mesh_y, false);
+}
+void BedLevelToolsClass::MoveToZ() {
+  BedLevelTools.goto_mesh_value = true;
+  BedLevelTools.manual_move(BedLevelTools.mesh_x, BedLevelTools.mesh_y, true);
+}
+void BedLevelToolsClass::ProbeXY() {
+  sprintf_P(cmd, PSTR("G30X%sY%s"),
+    dtostrf(bedlevel.get_mesh_x(BedLevelTools.mesh_x), 1, 2, str_1),
+    dtostrf(bedlevel.get_mesh_y(BedLevelTools.mesh_y), 1, 2, str_2)
+>>>>>>> master
   );
   gcode.process_subcommands_now(cmd);
 }
 
+<<<<<<< HEAD
 // Accessors
+=======
+>>>>>>> master
 float BedLevelToolsClass::get_max_value() {
   float max = __FLT_MAX__ * -1;
   GRID_LOOP(x, y) {
@@ -210,6 +256,7 @@ float BedLevelToolsClass::get_min_value() {
   return min;
 }
 
+<<<<<<< HEAD
 // Return 'true' if mesh is good and within LCD limits
 bool BedLevelToolsClass::meshvalidate() {
   GRID_LOOP(x, y) {
@@ -220,6 +267,20 @@ bool BedLevelToolsClass::meshvalidate() {
 }
 
 #if ENABLED(USE_UBL_VIEWER)
+=======
+bool BedLevelToolsClass::meshvalidate() {
+  float min = __FLT_MAX__, max = __FLT_MAX__ * -1;
+
+  GRID_LOOP(x, y) {
+    if (isnan(bedlevel.z_values[x][y])) return false;
+    if (bedlevel.z_values[x][y] < min) min = bedlevel.z_values[x][y];
+    if (bedlevel.z_values[x][y] > max) max = bedlevel.z_values[x][y];
+  }
+  return WITHIN(max, MESH_Z_OFFSET_MIN, MESH_Z_OFFSET_MAX);
+}
+
+#if USE_UBL_VIEWER
+>>>>>>> master
 
   void BedLevelToolsClass::Draw_Bed_Mesh(int16_t selected /*= -1*/, uint8_t gridline_width /*= 1*/, uint16_t padding_x /*= 8*/, uint16_t padding_y_top /*= 40 + 53 - 7*/) {
     drawing_mesh = true;

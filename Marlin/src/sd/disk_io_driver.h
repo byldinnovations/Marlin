@@ -22,7 +22,10 @@
 #pragma once
 
 #include <stdint.h>
+<<<<<<< HEAD
 #include "SdInfo.h"
+=======
+>>>>>>> master
 
 /**
  * DiskIO Interface

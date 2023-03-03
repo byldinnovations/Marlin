@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
@@ -26,6 +27,16 @@
 / * Low level disk interface module include file (c) ChaN, 2015
 /-----------------------------------------------------------------------*/
 
+=======
+/*-----------------------------------------------------------------------
+/ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+/ * Copyright (c) 2019 BigTreeTech [https://github.com/bigtreetech]
+/ * Low level disk interface module include file   (C)ChaN, 2015
+/-----------------------------------------------------------------------*/
+
+#pragma once
+
+>>>>>>> master
 #define _DISKIO_WRITE   1   /* 1: Enable disk_write function */
 #define _DISKIO_IOCTL   1   /* 1: Enable disk_ioctl function */
 #define _DISKIO_ISDIO   0   /* 1: Enable iSDIO control function */

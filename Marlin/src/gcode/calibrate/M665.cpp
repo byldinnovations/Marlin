@@ -181,6 +181,7 @@
     );
   }
 
+<<<<<<< HEAD
 #elif ENABLED(POLAR)
 
   #include "../../module/polar.h"
@@ -200,6 +201,8 @@
     SERIAL_ECHOLNPGM_P(PSTR("  M665 S"), segments_per_second);
   }
 
+=======
+>>>>>>> master
 #endif
 
 #endif // IS_KINEMATIC

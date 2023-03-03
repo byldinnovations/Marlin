@@ -166,7 +166,11 @@
   #include "../feature/fancheck.h"
 #endif
 
+<<<<<<< HEAD
 #if DGUS_LCD_UI_MKS
+=======
+#if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
   #include "../lcd/extui/dgus/DGUSScreenHandler.h"
   #include "../lcd/extui/dgus/DGUSDisplayDef.h"
 #endif
@@ -246,6 +250,7 @@ typedef struct SettingsDataStruct {
   float planner_z_fade_height;                          // M420 Zn  planner.z_fade_height
 
   //
+<<<<<<< HEAD
   // AUTOTEMP
   //
   #if ENABLED(AUTOTEMP)
@@ -254,6 +259,8 @@ typedef struct SettingsDataStruct {
   #endif
 
   //
+=======
+>>>>>>> master
   // MESH_BED_LEVELING
   //
   float mbl_z_offset;                                   // bedlevel.z_offset
@@ -480,9 +487,13 @@ typedef struct SettingsDataStruct {
   //
   // SKEW_CORRECTION
   //
+<<<<<<< HEAD
   #if ENABLED(SKEW_CORRECTION)
     skew_factor_t planner_skew_factor;                  // M852 I J K
   #endif
+=======
+  skew_factor_t planner_skew_factor;                    // M852 I J K
+>>>>>>> master
 
   //
   // ADVANCED_PAUSE_FEATURE
@@ -569,7 +580,11 @@ typedef struct SettingsDataStruct {
   //
   // MKS UI controller
   //
+<<<<<<< HEAD
   #if DGUS_LCD_UI_MKS
+=======
+  #if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
     MKS_Language mks_language_index;                    // Display Language
     xy_int_t mks_corner_offsets[5];                     // Bed Tramming
     xyz_int_t mks_park_pos;                             // Custom Parking (without NOZZLE_PARK)
@@ -866,6 +881,7 @@ void MarlinSettings::postprocess() {
     }
 
     //
+<<<<<<< HEAD
     // AUTOTEMP
     //
     #if ENABLED(AUTOTEMP)
@@ -876,6 +892,8 @@ void MarlinSettings::postprocess() {
     #endif
 
     //
+=======
+>>>>>>> master
     // Mesh Bed Leveling
     //
     {
@@ -1115,7 +1133,11 @@ void MarlinSettings::postprocess() {
     {
       _FIELD_TEST(bedPID);
       #if ENABLED(PIDTEMPBED)
+<<<<<<< HEAD
         const auto &pid = thermalManager.temp_bed.pid;
+=======
+        const PID_t &pid = thermalManager.temp_bed.pid;
+>>>>>>> master
         const raw_pid_t bed_pid = { pid.p(), pid.i(), pid.d() };
       #else
         const raw_pid_t bed_pid = { NAN, NAN, NAN };
@@ -1129,7 +1151,11 @@ void MarlinSettings::postprocess() {
     {
       _FIELD_TEST(chamberPID);
       #if ENABLED(PIDTEMPCHAMBER)
+<<<<<<< HEAD
         const auto &pid = thermalManager.temp_chamber.pid;
+=======
+        const PID_t &pid = thermalManager.temp_chamber.pid;
+>>>>>>> master
         const raw_pid_t chamber_pid = { pid.p(), pid.i(), pid.d() };
       #else
         const raw_pid_t chamber_pid = { NAN, NAN, NAN };
@@ -1473,10 +1499,15 @@ void MarlinSettings::postprocess() {
     //
     // Skew correction factors
     //
+<<<<<<< HEAD
     #if ENABLED(SKEW_CORRECTION)
       _FIELD_TEST(planner_skew_factor);
       EEPROM_WRITE(planner.skew_factor);
     #endif
+=======
+    _FIELD_TEST(planner_skew_factor);
+    EEPROM_WRITE(planner.skew_factor);
+>>>>>>> master
 
     //
     // Advanced Pause filament load & unload lengths
@@ -1614,7 +1645,11 @@ void MarlinSettings::postprocess() {
     //
     // MKS UI controller
     //
+<<<<<<< HEAD
     #if DGUS_LCD_UI_MKS
+=======
+    #if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
       EEPROM_WRITE(mks_language_index);
       EEPROM_WRITE(mks_corner_offsets);
       EEPROM_WRITE(mks_park_pos);
@@ -1632,7 +1667,12 @@ void MarlinSettings::postprocess() {
     // Model predictive control
     //
     #if ENABLED(MPCTEMP)
+<<<<<<< HEAD
       HOTEND_LOOP() EEPROM_WRITE(thermalManager.temp_hotend[e].mpc);
+=======
+      HOTEND_LOOP()
+        EEPROM_WRITE(thermalManager.temp_hotend[e].constants);
+>>>>>>> master
     #endif
 
     //
@@ -1825,6 +1865,7 @@ void MarlinSettings::postprocess() {
       EEPROM_READ(TERN(ENABLE_LEVELING_FADE_HEIGHT, new_z_fade_height, dummyf));
 
       //
+<<<<<<< HEAD
       // AUTOTEMP
       //
       #if ENABLED(AUTOTEMP)
@@ -1834,6 +1875,8 @@ void MarlinSettings::postprocess() {
       #endif
 
       //
+=======
+>>>>>>> master
       // Mesh (Manual) Bed Leveling
       //
       {
@@ -2453,7 +2496,10 @@ void MarlinSettings::postprocess() {
       //
       // Skew correction factors
       //
+<<<<<<< HEAD
       #if ENABLED(SKEW_CORRECTION)
+=======
+>>>>>>> master
       {
         skew_factor_t skew_factor;
         _FIELD_TEST(planner_skew_factor);
@@ -2468,7 +2514,10 @@ void MarlinSettings::postprocess() {
           }
         #endif
       }
+<<<<<<< HEAD
       #endif
+=======
+>>>>>>> master
 
       //
       // Advanced Pause filament load & unload lengths
@@ -2526,7 +2575,11 @@ void MarlinSettings::postprocess() {
       #endif
 
       //
+<<<<<<< HEAD
       // DWIN User Data
+=======
+      // Creality DWIN User Data
+>>>>>>> master
       //
       #if ENABLED(DWIN_LCD_PROUI)
       {
@@ -2601,7 +2654,11 @@ void MarlinSettings::postprocess() {
       //
       // MKS UI controller
       //
+<<<<<<< HEAD
       #if DGUS_LCD_UI_MKS
+=======
+      #if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
         _FIELD_TEST(mks_language_index);
         EEPROM_READ(mks_language_index);
         EEPROM_READ(mks_corner_offsets);
@@ -2626,7 +2683,12 @@ void MarlinSettings::postprocess() {
       //
       #if ENABLED(MPCTEMP)
       {
+<<<<<<< HEAD
         HOTEND_LOOP() EEPROM_READ(thermalManager.temp_hotend[e].mpc);
+=======
+        HOTEND_LOOP()
+          EEPROM_READ(thermalManager.temp_hotend[e].constants);
+>>>>>>> master
       }
       #endif
 
@@ -2850,7 +2912,11 @@ void MarlinSettings::postprocess() {
         #endif
 
         #if ENABLED(DWIN_LCD_PROUI)
+<<<<<<< HEAD
           status = !bedLevelTools.meshvalidate();
+=======
+          status = !BedLevelTools.meshvalidate();
+>>>>>>> master
           if (status) {
             bedlevel.invalidate();
             LCD_MESSAGE(MSG_UBL_MESH_INVALID);
@@ -3031,6 +3097,7 @@ void MarlinSettings::reset() {
   TERN_(HAS_LEVELING, reset_bed_level());
 
   //
+<<<<<<< HEAD
   // AUTOTEMP
   //
   #if ENABLED(AUTOTEMP)
@@ -3040,6 +3107,8 @@ void MarlinSettings::reset() {
   #endif
 
   //
+=======
+>>>>>>> master
   // X Axis Twist Compensation
   //
   TERN_(X_AXIS_TWIST_COMPENSATION, xatc.reset());
@@ -3311,7 +3380,11 @@ void MarlinSettings::reset() {
     #if ENABLED(DISTINCT_E_FACTORS)
       constexpr float linAdvanceK[] = ADVANCE_K;
       EXTRUDER_LOOP() {
+<<<<<<< HEAD
         const float a = linAdvanceK[_MAX(uint8_t(e), COUNT(linAdvanceK) - 1)];
+=======
+        const float a = linAdvanceK[_MAX(e, COUNT(linAdvanceK) - 1)];
+>>>>>>> master
         planner.extruder_advance_K[e] = a;
         TERN_(ADVANCE_K_EXTRA, other_extruder_advance_K[e] = a);
       }
@@ -3414,6 +3487,7 @@ void MarlinSettings::reset() {
     static_assert(COUNT(_filament_heat_capacity_permm) == HOTENDS, "FILAMENT_HEAT_CAPACITY_PERMM must have HOTENDS items.");
 
     HOTEND_LOOP() {
+<<<<<<< HEAD
       MPC_t &mpc = thermalManager.temp_hotend[e].mpc;
       mpc.heater_power = _mpc_heater_power[e];
       mpc.block_heat_capacity = _mpc_block_heat_capacity[e];
@@ -3423,6 +3497,17 @@ void MarlinSettings::reset() {
         mpc.fan255_adjustment = _mpc_ambient_xfer_coeff_fan255[e] - _mpc_ambient_xfer_coeff[e];
       #endif
       mpc.filament_heat_capacity_permm = _filament_heat_capacity_permm[e];
+=======
+      MPC_t &constants = thermalManager.temp_hotend[e].constants;
+      constants.heater_power = _mpc_heater_power[e];
+      constants.block_heat_capacity = _mpc_block_heat_capacity[e];
+      constants.sensor_responsiveness = _mpc_sensor_responsiveness[e];
+      constants.ambient_xfer_coeff_fan0 = _mpc_ambient_xfer_coeff[e];
+      #if ENABLED(MPC_INCLUDE_FAN)
+        constants.fan255_adjustment = _mpc_ambient_xfer_coeff_fan255[e] - _mpc_ambient_xfer_coeff[e];
+      #endif
+      constants.filament_heat_capacity_permm = _filament_heat_capacity_permm[e];
+>>>>>>> master
     }
   #endif
 

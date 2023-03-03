@@ -28,6 +28,7 @@
 
 #if HAS_MARLINUI_MENU
 
+<<<<<<< HEAD
 #define HAS_LARGE_AREA ((X_BED_SIZE) >= 1000 || TERN0(HAS_Y_AXIS, (Y_BED_SIZE) >= 1000) || TERN0(HAS_Z_AXIS, (Z_MAX_POS) >= 1000))
 #if ENABLED(LARGE_MOVE_ITEMS)
   #define HAS_LARGE_MOVES true
@@ -35,6 +36,14 @@
   #define HAS_LARGE_MOVES false
 #else
   #define HAS_LARGE_MOVES HAS_LARGE_AREA
+=======
+#if ENABLED(TRULY_LARGE_AREA)
+  #define LARGE_AREA_TEST true
+#elif ENABLED(SLIM_LCD_MENUS)
+  #define LARGE_AREA_TEST false
+#else
+  #define LARGE_AREA_TEST ((X_BED_SIZE) >= 1000 || TERN0(HAS_Y_AXIS, (Y_BED_SIZE) >= 1000) || TERN0(HAS_Z_AXIS, (Z_MAX_POS) >= 1000))
+>>>>>>> master
 #endif
 
 #include "menu_item.h"
@@ -68,7 +77,11 @@ void lcd_move_axis(const AxisEnum axis) {
     // This assumes the center is 0,0
     #if ENABLED(DELTA)
       if (axis != Z_AXIS) {
+<<<<<<< HEAD
         max = SQRT(sq(float(PRINTABLE_RADIUS)) - sq(current_position[Y_AXIS - axis])); // (Y_AXIS - axis) == the other axis
+=======
+        max = SQRT(sq((float)(DELTA_PRINTABLE_RADIUS)) - sq(current_position[Y_AXIS - axis])); // (Y_AXIS - axis) == the other axis
+>>>>>>> master
         min = -max;
       }
     #endif
@@ -88,7 +101,11 @@ void lcd_move_axis(const AxisEnum axis) {
       MenuEditItemBase::draw_edit_screen(GET_TEXT_F(MSG_MOVE_N), ftostr63(imp_pos));
     }
     else
+<<<<<<< HEAD
       MenuEditItemBase::draw_edit_screen(GET_TEXT_F(MSG_MOVE_N), ui.manual_move.menu_scale >= 0.1f ? (HAS_LARGE_AREA ? ftostr51sign(pos) : ftostr41sign(pos)) : ftostr63(pos));
+=======
+      MenuEditItemBase::draw_edit_screen(GET_TEXT_F(MSG_MOVE_N), ui.manual_move.menu_scale >= 0.1f ? (LARGE_AREA_TEST ? ftostr51sign(pos) : ftostr41sign(pos)) : ftostr63(pos));
+>>>>>>> master
   }
 }
 
@@ -157,7 +174,11 @@ void _menu_move_distance(const AxisEnum axis, const screenFunc_t func, const int
 
   BACK_ITEM(MSG_MOVE_AXIS);
   if (parser.using_inch_units()) {
+<<<<<<< HEAD
     if (HAS_LARGE_MOVES) {
+=======
+    if (LARGE_AREA_TEST) {
+>>>>>>> master
       SUBMENU(MSG_MOVE_1IN, []{ _goto_manual_move(IN_TO_MM(1.000f)); });
       SUBMENU(MSG_MOVE_05IN, []{ _goto_manual_move(IN_TO_MM(0.500f)); });
     }
@@ -166,7 +187,11 @@ void _menu_move_distance(const AxisEnum axis, const screenFunc_t func, const int
     SUBMENU(MSG_MOVE_0001IN, []{ _goto_manual_move(IN_TO_MM(0.001f)); });
   }
   else {
+<<<<<<< HEAD
     if (HAS_LARGE_MOVES) {
+=======
+    if (LARGE_AREA_TEST) {
+>>>>>>> master
       SUBMENU(MSG_MOVE_100MM, []{ _goto_manual_move(100); });
       SUBMENU(MSG_MOVE_50MM, []{ _goto_manual_move(50); });
     }
@@ -246,15 +271,36 @@ void menu_move() {
         #endif
       }
     #elif EXTRUDERS == 3
+<<<<<<< HEAD
       if (active_extruder < 2)
         GCODES_ITEM_N(1 - active_extruder, MSG_SELECT_E, active_extruder ? F("T0") : F("T1"));
     #else
       GCODES_ITEM_N(1 - active_extruder, MSG_SELECT_E, active_extruder ? F("T0") : F("T1"));
+=======
+      if (active_extruder < 2) {
+        if (active_extruder)
+          GCODES_ITEM_N(0, MSG_SELECT_E, F("T0"));
+        else
+          GCODES_ITEM_N(1, MSG_SELECT_E, F("T1"));
+      }
+    #else
+      if (active_extruder)
+        GCODES_ITEM_N(0, MSG_SELECT_E, F("T0"));
+      else
+        GCODES_ITEM_N(1, MSG_SELECT_E, F("T1"));
+>>>>>>> master
     #endif
 
   #elif ENABLED(DUAL_X_CARRIAGE)
 
+<<<<<<< HEAD
     GCODES_ITEM_N(1 - active_extruder, MSG_SELECT_E, active_extruder ? F("T0") : F("T1"));
+=======
+    if (active_extruder)
+      GCODES_ITEM_N(0, MSG_SELECT_E, F("T0"));
+    else
+      GCODES_ITEM_N(1, MSG_SELECT_E, F("T1"));
+>>>>>>> master
 
   #endif
 
@@ -360,6 +406,7 @@ void menu_motion() {
   #endif
 
   //
+<<<<<<< HEAD
   // Pen up/down menu
   //
   #if ENABLED(PEN_UP_DOWN_MENU)
@@ -367,6 +414,8 @@ void menu_motion() {
     GCODES_ITEM(MSG_MANUAL_PENDOWN, F("M280 P0 S50"));
   #endif
 
+=======
+>>>>>>> master
   // Probe Offset Wizard
   //
   #if ENABLED(PROBE_OFFSET_WIZARD)

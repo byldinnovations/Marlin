@@ -705,7 +705,11 @@ bool ST7920_Lite_Status_Screen::indicators_changed() {
     void ST7920_Lite_Status_Screen::drawRemain() {
       const duration_t remaint = TERN0(SET_REMAINING_TIME, ui.get_remaining_time());
       if (printJobOngoing() && remaint.value) {
+<<<<<<< HEAD
         draw_progress_string(PPOS, prepare_time_string(remaint, 'R'));
+=======
+        draw_progress_string( PPOS, prepare_time_string(remaint, 'R'));
+>>>>>>> master
       }
     }
   #endif
@@ -714,7 +718,11 @@ bool ST7920_Lite_Status_Screen::indicators_changed() {
     void ST7920_Lite_Status_Screen::drawInter() {
       const duration_t interactt = ui.interaction_time;
       if (printingIsActive() && interactt.value) {
+<<<<<<< HEAD
         draw_progress_string(PPOS, prepare_time_string(interactt, 'C'));
+=======
+        draw_progress_string( PPOS, prepare_time_string(interactt, 'C'));
+>>>>>>> master
       }
     }
   #endif
@@ -723,7 +731,11 @@ bool ST7920_Lite_Status_Screen::indicators_changed() {
     void ST7920_Lite_Status_Screen::drawElapsed() {
       if (printJobOngoing()) {
         const duration_t elapsedt = print_job_timer.duration();
+<<<<<<< HEAD
         draw_progress_string(PPOS, prepare_time_string(elapsedt, 'E'));
+=======
+        draw_progress_string( PPOS, prepare_time_string(elapsedt, 'E'));
+>>>>>>> master
       }
     }
   #endif

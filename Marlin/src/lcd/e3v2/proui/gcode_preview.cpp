@@ -21,6 +21,7 @@
  */
 
 /**
+<<<<<<< HEAD
  * DWIN G-code thumbnail preview
  * Author: Miguel A. Risco-Castillo
  * version: 3.1.2
@@ -30,6 +31,35 @@
 #include "../../../inc/MarlinConfigPre.h"
 
 #if BOTH(DWIN_LCD_PROUI, HAS_GCODE_PREVIEW)
+=======
+ * DWIN g-code thumbnail preview
+ * Author: Miguel A. Risco-Castillo
+ * version: 2.1
+ * Date: 2021/06/19
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * For commercial applications additional licenses can be requested
+ */
+
+#include "../../../inc/MarlinConfigPre.h"
+#if ENABLED(DWIN_LCD_PROUI)
+
+#include "dwin_defines.h"
+
+#if HAS_GCODE_PREVIEW
+>>>>>>> master
 
 #include "../../../core/types.h"
 #include "../../marlinui.h"
@@ -228,10 +258,13 @@ void Preview_DrawFromSD() {
   }
 }
 
+<<<<<<< HEAD
 void Preview_Invalidate() {
   fileprop.thumbstart = 0;
 }
 
+=======
+>>>>>>> master
 bool Preview_Valid() {
   return !!fileprop.thumbstart;
 }
@@ -240,4 +273,9 @@ void Preview_Reset() {
   fileprop.thumbsize = 0;
 }
 
+<<<<<<< HEAD
 #endif // HAS_GCODE_PREVIEW && DWIN_LCD_PROUI
+=======
+#endif // HAS_GCODE_PREVIEW
+#endif // DWIN_LCD_PROUI
+>>>>>>> master

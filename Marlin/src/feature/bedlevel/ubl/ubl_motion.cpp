@@ -334,6 +334,7 @@
 #else // UBL_SEGMENTED
 
   #if IS_SCARA
+<<<<<<< HEAD
     #define SEGMENT_MIN_LENGTH 0.25 // SCARA minimum segment size is 0.25mm
   #elif IS_KINEMATIC
     #define SEGMENT_MIN_LENGTH 0.10 // (mm) Still subject to DEFAULT_SEGMENTS_PER_SECOND
@@ -342,6 +343,18 @@
       #define SEGMENT_MIN_LENGTH LEVELED_SEGMENT_LENGTH
     #else
       #define SEGMENT_MIN_LENGTH 1.00 // (mm) Similar to G2/G3 arc segmentation
+=======
+    #define DELTA_SEGMENT_MIN_LENGTH 0.25 // SCARA minimum segment size is 0.25mm
+  #elif ENABLED(DELTA)
+    #define DELTA_SEGMENT_MIN_LENGTH 0.10 // mm (still subject to DEFAULT_SEGMENTS_PER_SECOND)
+  #elif ENABLED(POLARGRAPH)
+    #define DELTA_SEGMENT_MIN_LENGTH 0.10 // mm (still subject to DEFAULT_SEGMENTS_PER_SECOND)
+  #else // CARTESIAN
+    #ifdef LEVELED_SEGMENT_LENGTH
+      #define DELTA_SEGMENT_MIN_LENGTH LEVELED_SEGMENT_LENGTH
+    #else
+      #define DELTA_SEGMENT_MIN_LENGTH 1.00 // mm (similar to G2/G3 arc segmentation)
+>>>>>>> master
     #endif
   #endif
 
@@ -359,6 +372,7 @@
     const xyze_pos_t total = destination - current_position;
 
     const float cart_xy_mm_2 = HYPOT2(total.x, total.y),
+<<<<<<< HEAD
                 cart_xy_mm = SQRT(cart_xy_mm_2);                               // Total XY distance
 
     #if IS_KINEMATIC
@@ -376,6 +390,25 @@
     // Add hints to help optimize the move
     PlannerHints hints(SQRT(cart_xy_mm_2 + sq(total.z)) * inv_segments);       // Length of each segment
     #if ENABLED(FEEDRATE_SCALING)
+=======
+                cart_xy_mm = SQRT(cart_xy_mm_2);                                     // Total XY distance
+
+    #if IS_KINEMATIC
+      const float seconds = cart_xy_mm / scaled_fr_mm_s;                             // Duration of XY move at requested rate
+      uint16_t segments = LROUND(segments_per_second * seconds),                     // Preferred number of segments for distance @ feedrate
+               seglimit = LROUND(cart_xy_mm * RECIPROCAL(DELTA_SEGMENT_MIN_LENGTH)); // Number of segments at minimum segment length
+      NOMORE(segments, seglimit);                                                    // Limit to minimum segment length (fewer segments)
+    #else
+      uint16_t segments = LROUND(cart_xy_mm * RECIPROCAL(DELTA_SEGMENT_MIN_LENGTH)); // Cartesian fixed segment length
+    #endif
+
+    NOLESS(segments, 1U);                                                            // Must have at least one segment
+    const float inv_segments = 1.0f / segments;                                      // Reciprocal to save calculation
+
+    // Add hints to help optimize the move
+    PlannerHints hints(SQRT(cart_xy_mm_2 + sq(total.z)) * inv_segments);             // Length of each segment
+    #if ENABLED(SCARA_FEEDRATE_SCALING)
+>>>>>>> master
       hints.inv_duration = scaled_fr_mm_s / hints.millimeters;
     #endif
 

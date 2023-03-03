@@ -23,15 +23,29 @@
 /**
  * Lock screen implementation for PRO UI
  * Author: Miguel A. Risco-Castillo (MRISCOC)
+<<<<<<< HEAD
  * Version: 2.3.2
  * Date: 2022/11/20
+=======
+ * Version: 2.2.0
+ * Date: 2022/04/11
+>>>>>>> master
  */
 
 #include "../../../inc/MarlinConfigPre.h"
 
+<<<<<<< HEAD
 #if BOTH(DWIN_LCD_PROUI, HAS_LOCKSCREEN)
 
 #include "dwin_defines.h"
+=======
+#if ENABLED(DWIN_LCD_PROUI)
+
+#include "dwin_defines.h"
+
+#if HAS_LOCKSCREEN
+
+>>>>>>> master
 #include "dwinui.h"
 #include "dwin.h"
 #include "lockscreen.h"
@@ -72,4 +86,10 @@ void LockScreenClass::onEncoder(EncoderState encoder_diffState) {
   DWIN_UpdateLCD();
 }
 
+<<<<<<< HEAD
 #endif // DWIN_LCD_PROUI && HAS_LOCKSCREEN
+=======
+#endif // HAS_LOCKSCREEN
+
+#endif // DWIN_LCD_PROUI
+>>>>>>> master

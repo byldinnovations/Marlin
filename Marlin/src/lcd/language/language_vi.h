@@ -224,6 +224,10 @@ namespace Language_vi {
   LSTR MSG_AUTOTEMP                       = _UxGT("Nhiệt độ tự động");                     // Autotemp
   LSTR MSG_LCD_ON                         = _UxGT("Bật");                                  // on
   LSTR MSG_LCD_OFF                        = _UxGT("Tắt");                                  // off
+<<<<<<< HEAD
+=======
+  LSTR MSG_SELECT                         = _UxGT("Lựa");                                  // Select
+>>>>>>> master
   LSTR MSG_SELECT_E                       = _UxGT("Lựa *");
   LSTR MSG_ACC                            = _UxGT("Tăng Tốc");
   LSTR MSG_JERK                           = _UxGT("Giật");
@@ -326,7 +330,11 @@ namespace Language_vi {
   LSTR MSG_BLTOUCH_STOW                   = _UxGT("Cất BLTouch");                          // Stow BLTouch
   LSTR MSG_MANUAL_DEPLOY                  = _UxGT("Đem Đầu Dò-Z");                         // Deploy Z-Probe
   LSTR MSG_MANUAL_STOW                    = _UxGT("Cất Đầu Dò-Z");                         // Stow Z-Probe
+<<<<<<< HEAD
   LSTR MSG_HOME_FIRST                     = _UxGT("Về nhà %s Trước");
+=======
+  LSTR MSG_HOME_FIRST                     = _UxGT("Về nhà %s%s%s Trước");
+>>>>>>> master
   LSTR MSG_ZPROBE_ZOFFSET                 = _UxGT("Đầu Dò Bù Đắp Z");                      // Probe Z Offset
   LSTR MSG_BABYSTEP_X                     = _UxGT("Nhít X");                               // Babystep X
   LSTR MSG_BABYSTEP_Y                     = _UxGT("Nhít Y");

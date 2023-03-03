@@ -23,6 +23,7 @@
 /**
  * Bed Level Tools for Pro UI
  * Extended by: Miguel A. Risco-Castillo (MRISCOC)
+<<<<<<< HEAD
  * Version: 2.1.0
  * Date: 2022/08/27
  *
@@ -43,10 +44,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
+=======
+ * Version: 2.0.0
+ * Date: 2022/05/23
+ *
+ * Based on the original work of: Henri-J-Norden
+ * https://github.com/Jyers/Marlin/pull/126
+ */
+
+>>>>>>> master
 #pragma once
 
 #include "../../../inc/MarlinConfigPre.h"
 
+<<<<<<< HEAD
 //#define USE_UBL_VIEWER 1
 
 #define UBL_Z_OFFSET_MIN -3.0
@@ -55,6 +66,18 @@
 class BedLevelToolsClass {
 public:
   #if ENABLED(USE_UBL_VIEWER)
+=======
+#if ENABLED(AUTO_BED_LEVELING_UBL)
+  //#define USE_UBL_VIEWER 1
+#endif
+
+#define MESH_Z_OFFSET_MIN -3.0
+#define MESH_Z_OFFSET_MAX  3.0
+
+class BedLevelToolsClass {
+public:
+  #if USE_UBL_VIEWER
+>>>>>>> master
     static bool viewer_asymmetric_range;
     static bool viewer_print_value;
   #endif
@@ -77,10 +100,20 @@ public:
   static float get_max_value();
   static float get_min_value();
   static bool meshvalidate();
+<<<<<<< HEAD
   #if ENABLED(USE_UBL_VIEWER)
+=======
+  #if USE_UBL_VIEWER
+>>>>>>> master
     static void Draw_Bed_Mesh(int16_t selected = -1, uint8_t gridline_width = 1, uint16_t padding_x = 8, uint16_t padding_y_top = 40 + 53 - 7);
     static void Set_Mesh_Viewer_Status();
   #endif
 };
 
+<<<<<<< HEAD
 extern BedLevelToolsClass bedLevelTools;
+=======
+extern BedLevelToolsClass BedLevelTools;
+
+void Goto_MeshViewer();
+>>>>>>> master

@@ -318,7 +318,13 @@ void unified_bed_leveling::G29() {
     TERN_(HAS_MULTI_HOTEND, if (active_extruder != 0) tool_change(0, true));
 
     // Position bed horizontally and Z probe vertically.
+<<<<<<< HEAD
     #if HAS_SAFE_BED_LEVELING
+=======
+    #if    defined(SAFE_BED_LEVELING_START_X) || defined(SAFE_BED_LEVELING_START_Y) || defined(SAFE_BED_LEVELING_START_Z) \
+        || defined(SAFE_BED_LEVELING_START_I) || defined(SAFE_BED_LEVELING_START_J) || defined(SAFE_BED_LEVELING_START_K) \
+        || defined(SAFE_BED_LEVELING_START_U) || defined(SAFE_BED_LEVELING_START_V) || defined(SAFE_BED_LEVELING_START_W)
+>>>>>>> master
       xyze_pos_t safe_position = current_position;
       #ifdef SAFE_BED_LEVELING_START_X
         safe_position.x = SAFE_BED_LEVELING_START_X;
@@ -349,7 +355,11 @@ void unified_bed_leveling::G29() {
       #endif
 
       do_blocking_move_to(safe_position);
+<<<<<<< HEAD
     #endif // HAS_SAFE_BED_LEVELING
+=======
+    #endif
+>>>>>>> master
   }
 
   // Invalidate one or more nearby mesh points, possibly all.
@@ -885,6 +895,7 @@ void set_message_with_feedback(FSTR_P const fstr) {
     ui.capture();
     save_ubl_active_state_and_disable();   // Disable bed level correction for probing
 
+<<<<<<< HEAD
     do_blocking_move_to(
       NUM_AXIS_LIST(
         0.5f * ((MESH_MAX_X) - (MESH_MIN_X)),
@@ -911,6 +922,10 @@ void set_message_with_feedback(FSTR_P const fstr) {
       )
       //, _MIN(planner.settings.max_feedrate_mm_s[X_AXIS], planner.settings.max_feedrate_mm_s[Y_AXIS]) * 0.5f
     );
+=======
+    do_blocking_move_to(0.5f * (MESH_MAX_X - (MESH_MIN_X)), 0.5f * (MESH_MAX_Y - (MESH_MIN_Y)), MANUAL_PROBE_START_Z);
+      //, _MIN(planner.settings.max_feedrate_mm_s[X_AXIS], planner.settings.max_feedrate_mm_s[Y_AXIS]) * 0.5f);
+>>>>>>> master
     planner.synchronize();
 
     SERIAL_ECHOPGM("Place shim under nozzle");

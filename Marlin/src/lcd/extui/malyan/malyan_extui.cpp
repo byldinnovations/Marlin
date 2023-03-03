@@ -111,8 +111,13 @@ namespace ExtUI {
         case PID_STARTED:
           set_lcd_error(GET_TEXT_F(MSG_PID_AUTOTUNE));
           break;
+<<<<<<< HEAD
         case PID_BAD_HEATER_ID:
           set_lcd_error(GET_TEXT_F(MSG_PID_BAD_HEATER_ID));
+=======
+        case PID_BAD_EXTRUDER_NUM:
+          set_lcd_error(GET_TEXT_F(MSG_PID_BAD_EXTRUDER_NUM));
+>>>>>>> master
           break;
         case PID_TEMP_TOO_HIGH:
           set_lcd_error(GET_TEXT_F(MSG_PID_TEMP_TOO_HIGH));

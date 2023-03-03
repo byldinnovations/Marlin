@@ -221,9 +221,15 @@ void GcodeSuite::M203_report(const bool forReplay/*=true*/) {
 /**
  * M204: Set Accelerations in units/sec^2 (M204 P1200 R3000 T3000)
  *
+<<<<<<< HEAD
  *    P<accel> Printing moves
  *    R<accel> Retract only (no X, Y, Z) moves
  *    T<accel> Travel (non printing) moves
+=======
+ *    P = Printing moves
+ *    R = Retract only (no X, Y, Z) moves
+ *    T = Travel (non printing) moves
+>>>>>>> master
  */
 void GcodeSuite::M204() {
   if (!parser.seen("PRST"))
@@ -247,6 +253,7 @@ void GcodeSuite::M204_report(const bool forReplay/*=true*/) {
   );
 }
 
+<<<<<<< HEAD
 #if AXIS_COLLISION('B')
   #define M205_MIN_SEG_TIME_PARAM 'D'
   #define M205_MIN_SEG_TIME_STR "D"
@@ -278,6 +285,26 @@ void GcodeSuite::M205() {
 
   //planner.synchronize();
   if (parser.seenval(M205_MIN_SEG_TIME_PARAM)) planner.settings.min_segment_time_us = parser.value_ulong();
+=======
+/**
+ * M205: Set Advanced Settings
+ *
+ *    B = Min Segment Time (µs)
+ *    S = Min Feed Rate (units/s)
+ *    T = Min Travel Feed Rate (units/s)
+ *    X = Max X Jerk (units/sec^2)
+ *    Y = Max Y Jerk (units/sec^2)
+ *    Z = Max Z Jerk (units/sec^2)
+ *    E = Max E Jerk (units/sec^2)
+ *    J = Junction Deviation (mm) (If not using CLASSIC_JERK)
+ */
+void GcodeSuite::M205() {
+  if (!parser.seen("BST" TERN_(HAS_JUNCTION_DEVIATION, "J") TERN_(HAS_CLASSIC_JERK, "XYZE")))
+    return M205_report();
+
+  //planner.synchronize();
+  if (parser.seenval('B')) planner.settings.min_segment_time_us = parser.value_ulong();
+>>>>>>> master
   if (parser.seenval('S')) planner.settings.min_feedrate_mm_s = parser.value_linear_units();
   if (parser.seenval('T')) planner.settings.min_travel_feedrate_mm_s = parser.value_linear_units();
   #if HAS_JUNCTION_DEVIATION
@@ -317,7 +344,11 @@ void GcodeSuite::M205() {
 
 void GcodeSuite::M205_report(const bool forReplay/*=true*/) {
   report_heading_etc(forReplay, F(
+<<<<<<< HEAD
     "Advanced (" M205_MIN_SEG_TIME_STR "<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate>"
+=======
+    "Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate>"
+>>>>>>> master
     TERN_(HAS_JUNCTION_DEVIATION, " J<junc_dev>")
     #if HAS_CLASSIC_JERK
       NUM_AXIS_GANG(
@@ -330,7 +361,11 @@ void GcodeSuite::M205_report(const bool forReplay/*=true*/) {
     ")"
   ));
   SERIAL_ECHOLNPGM_P(
+<<<<<<< HEAD
       PSTR("  M205 " M205_MIN_SEG_TIME_STR), LINEAR_UNIT(planner.settings.min_segment_time_us)
+=======
+      PSTR("  M205 B"), LINEAR_UNIT(planner.settings.min_segment_time_us)
+>>>>>>> master
     , PSTR(" S"), LINEAR_UNIT(planner.settings.min_feedrate_mm_s)
     , SP_T_STR, LINEAR_UNIT(planner.settings.min_travel_feedrate_mm_s)
     #if HAS_JUNCTION_DEVIATION

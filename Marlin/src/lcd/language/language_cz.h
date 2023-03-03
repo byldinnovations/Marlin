@@ -264,6 +264,10 @@ namespace Language_cz {
   LSTR MSG_LCD_OFF                        = _UxGT("Vyp");
   LSTR MSG_PID_AUTOTUNE                   = _UxGT("PID automatika");
   LSTR MSG_PID_AUTOTUNE_E                 = _UxGT("PID automatika *");
+<<<<<<< HEAD
+=======
+  LSTR MSG_SELECT                         = _UxGT("Vybrat");
+>>>>>>> master
   LSTR MSG_SELECT_E                       = _UxGT("Vybrat *");
   LSTR MSG_ACC                            = _UxGT("Zrychl");
   LSTR MSG_JERK                           = _UxGT("Jerk");
@@ -395,7 +399,11 @@ namespace Language_cz {
   LSTR MSG_MANUAL_DEPLOY_TOUCHMI          = _UxGT("vysunout TouchMI");
   LSTR MSG_MANUAL_DEPLOY                  = _UxGT("Vysunout Z-sondu");
   LSTR MSG_MANUAL_STOW                    = _UxGT("Zasunout Z-sondu");
+<<<<<<< HEAD
   LSTR MSG_HOME_FIRST                     = _UxGT("Domů %s první");
+=======
+  LSTR MSG_HOME_FIRST                     = _UxGT("Domů %s%s%s první");
+>>>>>>> master
   LSTR MSG_ZPROBE_ZOFFSET                 = _UxGT("Z ofset");
   LSTR MSG_BABYSTEP_X                     = _UxGT("Babystep X");
   LSTR MSG_BABYSTEP_Y                     = _UxGT("Babystep Y");

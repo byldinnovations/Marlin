@@ -178,6 +178,7 @@
 #ifndef COLOR_KILL_SCREEN_TEXT
   #define COLOR_KILL_SCREEN_TEXT  COLOR_WHITE
 #endif
+<<<<<<< HEAD
 
 #ifndef E_BTN_COLOR
   #define E_BTN_COLOR             COLOR_YELLOW
@@ -191,3 +192,5 @@
 #ifndef Z_BTN_COLOR
   #define Z_BTN_COLOR             COLOR_LIGHT_BLUE
 #endif
+=======
+>>>>>>> master

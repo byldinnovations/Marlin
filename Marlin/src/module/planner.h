@@ -50,8 +50,11 @@
   #include "delta.h"
 #elif ENABLED(POLARGRAPH)
   #include "polargraph.h"
+<<<<<<< HEAD
 #elif ENABLED(POLAR)
   #include "polar.h"
+=======
+>>>>>>> master
 #endif
 
 #if ABL_PLANAR
@@ -158,6 +161,7 @@ typedef struct {
 
 } block_flags_t;
 
+<<<<<<< HEAD
 #if ENABLED(AUTOTEMP)
   typedef struct {
     celsius_t min, max;
@@ -166,6 +170,8 @@ typedef struct {
   } autotemp_t;
 #endif
 
+=======
+>>>>>>> master
 #if ENABLED(LASER_FEATURE)
 
   typedef struct {
@@ -293,7 +299,11 @@ typedef struct PlannerBlock {
 
 } block_t;
 
+<<<<<<< HEAD
 #if ANY(LIN_ADVANCE, FEEDRATE_SCALING, GRADIENT_MIX, LCD_SHOW_E_TOTAL, POWER_LOSS_RECOVERY)
+=======
+#if ANY(LIN_ADVANCE, SCARA_FEEDRATE_SCALING, GRADIENT_MIX, LCD_SHOW_E_TOTAL, POWER_LOSS_RECOVERY)
+>>>>>>> master
   #define HAS_POSITION_FLOAT 1
 #endif
 
@@ -336,6 +346,7 @@ typedef struct {
   };
 #endif
 
+<<<<<<< HEAD
 #if ENABLED(SKEW_CORRECTION)
   typedef struct {
     #if ENABLED(SKEW_CORRECTION_GCODE)
@@ -351,6 +362,27 @@ typedef struct {
     #endif
   } skew_factor_t;
 #endif
+=======
+#if DISABLED(SKEW_CORRECTION)
+  #define XY_SKEW_FACTOR 0
+  #define XZ_SKEW_FACTOR 0
+  #define YZ_SKEW_FACTOR 0
+#endif
+
+typedef struct {
+  #if ENABLED(SKEW_CORRECTION_GCODE)
+    float xy;
+    #if ENABLED(SKEW_CORRECTION_FOR_Z)
+      float xz, yz;
+    #else
+      const float xz = XZ_SKEW_FACTOR, yz = YZ_SKEW_FACTOR;
+    #endif
+  #else
+    const float xy = XY_SKEW_FACTOR,
+                xz = XZ_SKEW_FACTOR, yz = YZ_SKEW_FACTOR;
+  #endif
+} skew_factor_t;
+>>>>>>> master
 
 #if ENABLED(DISABLE_INACTIVE_EXTRUDER)
   typedef IF<(BLOCK_BUFFER_SIZE > 64), uint16_t, uint8_t>::type last_move_t;
@@ -363,7 +395,11 @@ typedef struct {
 
 struct PlannerHints {
   float millimeters = 0.0;            // Move Length, if known, else 0.
+<<<<<<< HEAD
   #if ENABLED(FEEDRATE_SCALING)
+=======
+  #if ENABLED(SCARA_FEEDRATE_SCALING)
+>>>>>>> master
     float inv_duration = 0.0;         // Reciprocal of the move duration, if known
   #endif
   #if ENABLED(HINTS_CURVE_RADIUS)
@@ -482,9 +518,13 @@ class Planner {
       static xyze_pos_t position_cart;
     #endif
 
+<<<<<<< HEAD
     #if ENABLED(SKEW_CORRECTION)
       static skew_factor_t skew_factor;
     #endif
+=======
+    static skew_factor_t skew_factor;
+>>>>>>> master
 
     #if ENABLED(SD_ABORT_ON_ENDSTOP_HIT)
       static bool abort_on_endstop_hit;
@@ -915,8 +955,13 @@ class Planner {
       return out;
     }
 
+<<<<<<< HEAD
     // SCARA AB and Polar YB axes are in degrees, not mm
     #if EITHER(IS_SCARA, POLAR)
+=======
+    // SCARA AB axes are in degrees, not mm
+    #if IS_SCARA
+>>>>>>> master
       FORCE_INLINE static float get_axis_position_degrees(const AxisEnum axis) { return get_axis_position_mm(axis); }
     #endif
 
@@ -980,7 +1025,13 @@ class Planner {
     #endif
 
     #if ENABLED(AUTOTEMP)
+<<<<<<< HEAD
       static autotemp_t autotemp;
+=======
+      static celsius_t autotemp_min, autotemp_max;
+      static float autotemp_factor;
+      static bool autotemp_enabled;
+>>>>>>> master
       static void autotemp_update();
       static void autotemp_M104_M109();
       static void autotemp_task();

@@ -407,12 +407,20 @@ void GcodeSuite::G33() {
                   towers_set = !parser.seen_test('T');
 
   // The calibration radius is set to a calculated value
+<<<<<<< HEAD
   float dcr = probe_at_offset ? PRINTABLE_RADIUS : PRINTABLE_RADIUS - PROBING_MARGIN;
+=======
+  float dcr = probe_at_offset ? DELTA_PRINTABLE_RADIUS : DELTA_PRINTABLE_RADIUS - PROBING_MARGIN;
+>>>>>>> master
   #if HAS_PROBE_XY_OFFSET
     const float total_offset = HYPOT(probe.offset_xy.x, probe.offset_xy.y);
     dcr -= probe_at_offset ? _MAX(total_offset, PROBING_MARGIN) : total_offset;
   #endif
+<<<<<<< HEAD
   NOMORE(dcr, PRINTABLE_RADIUS);
+=======
+  NOMORE(dcr, DELTA_PRINTABLE_RADIUS);
+>>>>>>> master
   if (parser.seenval('R')) dcr -= _MAX(parser.value_float(), 0.0f);
   TERN_(HAS_DELTA_SENSORLESS_PROBING, dcr *= sensorless_radius_factor);
 

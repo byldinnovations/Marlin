@@ -23,8 +23,13 @@
 /**
  * Print Stats page for PRO UI
  * Author: Miguel A. Risco-Castillo (MRISCOC)
+<<<<<<< HEAD
  * Version: 1.4.2
  * Date: 2022/12/03
+=======
+ * Version: 1.3.0
+ * Date: 2022/02/24
+>>>>>>> master
  */
 
 #include "../../../inc/MarlinConfigPre.h"
@@ -79,6 +84,7 @@ void Goto_PrintStats() {
   HMI_SaveProcessID(WaitResponse);
 }
 
+<<<<<<< HEAD
 // Print Stats Reset popup
 void Popup_ResetStats() { DWIN_Popup_ConfirmCancel(ICON_Info_0, GET_TEXT_F(MSG_RESET_STATS)); }
 void OnClick_ResetStats() {
@@ -87,4 +93,6 @@ void OnClick_ResetStats() {
 }
 void PrintStatsReset() { Goto_Popup(Popup_ResetStats, OnClick_ResetStats); }
 
+=======
+>>>>>>> master
 #endif // DWIN_LCD_PROUI && PRINTCOUNTER

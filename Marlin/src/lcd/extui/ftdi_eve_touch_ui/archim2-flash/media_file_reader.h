@@ -32,7 +32,11 @@
 class MediaFileReader {
   private:
     #if ENABLED(SDSUPPORT)
+<<<<<<< HEAD
       MediaFile root, file;
+=======
+      SdFile root, file;
+>>>>>>> master
     #endif
 
   public:

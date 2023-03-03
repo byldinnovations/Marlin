@@ -169,7 +169,11 @@
     if (parser.seen("EPS")) {
       planner.synchronize();
       if (parser.seenval('P')) duplication_e_mask = parser.value_int();   // Set the mask directly
+<<<<<<< HEAD
       else if (parser.seenval('E')) duplication_e_mask = _BV(parser.value_int() + 1) - 1; // Set the mask by E index
+=======
+      else if (parser.seenval('E')) duplication_e_mask = pow(2, parser.value_int() + 1) - 1; // Set the mask by E index
+>>>>>>> master
       ena = (2 == parser.intval('S', extruder_duplication_enabled ? 2 : 0));
       set_duplication_enabled(ena && (duplication_e_mask >= 3));
     }

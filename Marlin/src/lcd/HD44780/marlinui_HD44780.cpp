@@ -537,7 +537,11 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
  */
 FORCE_INLINE void _draw_heater_status(const heater_id_t heater_id, const char prefix, const bool blink) {
   #if HAS_HEATED_BED
+<<<<<<< HEAD
     const bool isBed = heater_id == H_BED;
+=======
+    const bool isBed = TERN(HAS_HEATED_CHAMBER, heater_id == H_BED, heater_id < 0);
+>>>>>>> master
     const celsius_t t1 = (isBed ? thermalManager.wholeDegBed()  : thermalManager.wholeDegHotend(heater_id)),
                     t2 = (isBed ? thermalManager.degTargetBed() : thermalManager.degTargetHotend(heater_id));
   #else
@@ -546,6 +550,7 @@ FORCE_INLINE void _draw_heater_status(const heater_id_t heater_id, const char pr
 
   if (prefix >= 0) lcd_put_lchar(prefix);
 
+<<<<<<< HEAD
   if (t1 >= 0)
     lcd_put_u8str(ui16tostr3rj(t1));
   else {
@@ -557,6 +562,9 @@ FORCE_INLINE void _draw_heater_status(const heater_id_t heater_id, const char pr
     #endif
   }
 
+=======
+  lcd_put_u8str(t1 < 0 ? "err" : i16tostr3rj(t1));
+>>>>>>> master
   lcd_put_u8str(F("/"));
 
   #if !HEATER_IDLE_HANDLER

@@ -28,7 +28,10 @@
 
 uint16_t CANVAS::width, CANVAS::height;
 uint16_t CANVAS::startLine, CANVAS::endLine;
+<<<<<<< HEAD
 uint16_t CANVAS::background_color;
+=======
+>>>>>>> master
 uint16_t *CANVAS::buffer = TFT::buffer;
 
 void CANVAS::New(uint16_t x, uint16_t y, uint16_t width, uint16_t height) {
@@ -62,16 +65,23 @@ void CANVAS::SetBackground(uint16_t color) {
   uint32_t count = ((endLine - startLine) * width + 1) >> 1;
   uint32_t *pointer = (uint32_t *)buffer;
   while (count--) *pointer++ = two_pixels;
+<<<<<<< HEAD
   background_color = color;
 }
 
 extern uint16_t gradient(uint16_t colorA, uint16_t colorB, uint16_t factor);
 
 void CANVAS::AddText(uint16_t x, uint16_t y, uint16_t color, uint16_t *string, uint16_t maxWidth) {
+=======
+}
+
+void CANVAS::AddText(uint16_t x, uint16_t y, uint16_t color, uint8_t *string, uint16_t maxWidth) {
+>>>>>>> master
   if (endLine < y || startLine > y + GetFontHeight()) return;
 
   if (maxWidth == 0) maxWidth = width - x;
 
+<<<<<<< HEAD
   uint16_t colors[16];
   uint16_t stringWidth = 0;
   if (GetFontType() == FONT_MARLIN_GLYPHS_2BPP) {
@@ -91,6 +101,13 @@ void CANVAS::AddText(uint16_t x, uint16_t y, uint16_t color, uint16_t *string, u
         AddImage(x + stringWidth + glyph->BBXOffsetX, y + GetFontAscent() - glyph->BBXHeight - glyph->BBXOffsetY, glyph->BBXWidth, glyph->BBXHeight, GREYSCALE2, ((uint8_t *)glyph) + sizeof(glyph_t), colors);
         break;
     }
+=======
+  uint16_t stringWidth = 0;
+  for (uint16_t i = 0 ; *(string + i) ; i++) {
+    glyph_t *glyph = Glyph(string + i);
+    if (stringWidth + glyph->BBXWidth > maxWidth) break;
+    AddImage(x + stringWidth + glyph->BBXOffsetX, y + Font()->FontAscent - glyph->BBXHeight - glyph->BBXOffsetY, glyph->BBXWidth, glyph->BBXHeight, GREYSCALE1, ((uint8_t *)glyph) + sizeof(glyph_t), &color);
+>>>>>>> master
     stringWidth += glyph->DWidth;
   }
 }

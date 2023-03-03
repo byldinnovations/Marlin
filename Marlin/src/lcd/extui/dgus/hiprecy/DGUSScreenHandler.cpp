@@ -22,7 +22,11 @@
 
 #include "../../../../inc/MarlinConfigPre.h"
 
+<<<<<<< HEAD
 #if DGUS_LCD_UI_HIPRECY
+=======
+#if ENABLED(DGUS_LCD_UI_HIPRECY)
+>>>>>>> master
 
 #include "../DGUSScreenHandler.h"
 

@@ -1668,6 +1668,7 @@ bool SdBaseFile::remove(SdBaseFile *dirFile, const char *path) {
   return file.open(dirFile, path, O_WRITE) ? file.remove() : false;
 }
 
+<<<<<<< HEAD
 bool SdBaseFile::hide(const bool hidden) {
   if (ENABLED(SDCARD_READONLY)) return false;
   // must be an open file or subdirectory
@@ -1690,6 +1691,8 @@ bool SdBaseFile::hide(const bool hidden) {
   return true;
 }
 
+=======
+>>>>>>> master
 /**
  * Rename a file or subdirectory.
  *

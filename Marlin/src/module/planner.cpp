@@ -198,12 +198,22 @@ float Planner::mm_per_step[DISTINCT_AXES];      // (mm) Millimeters per step
   constexpr bool Planner::leveling_active;
 #endif
 
+<<<<<<< HEAD
 #if ENABLED(SKEW_CORRECTION)
   skew_factor_t Planner::skew_factor; // Initialized by settings.load()
 #endif
 
 #if ENABLED(AUTOTEMP)
   autotemp_t Planner::autotemp = { AUTOTEMP_MIN, AUTOTEMP_MAX, AUTOTEMP_FACTOR, false };
+=======
+skew_factor_t Planner::skew_factor; // Initialized by settings.load()
+
+#if ENABLED(AUTOTEMP)
+  celsius_t Planner::autotemp_max = 250,
+            Planner::autotemp_min = 210;
+  float Planner::autotemp_factor = 0.1f;
+  bool Planner::autotemp_enabled = false;
+>>>>>>> master
 #endif
 
 // private:
@@ -1433,8 +1443,13 @@ void Planner::check_axes_activity() {
   #if ENABLED(AUTOTEMP_PROPORTIONAL)
     void Planner::_autotemp_update_from_hotend() {
       const celsius_t target = thermalManager.degTargetHotend(active_extruder);
+<<<<<<< HEAD
       autotemp.min = target + AUTOTEMP_MIN_P;
       autotemp.max = target + AUTOTEMP_MAX_P;
+=======
+      autotemp_min = target + AUTOTEMP_MIN_P;
+      autotemp_max = target + AUTOTEMP_MAX_P;
+>>>>>>> master
     }
   #endif
 
@@ -1445,8 +1460,13 @@ void Planner::check_axes_activity() {
    */
   void Planner::autotemp_update() {
     _autotemp_update_from_hotend();
+<<<<<<< HEAD
     autotemp.factor = TERN(AUTOTEMP_PROPORTIONAL, AUTOTEMP_FACTOR_P, 0);
     autotemp.enabled = autotemp.factor != 0;
+=======
+    autotemp_factor = TERN(AUTOTEMP_PROPORTIONAL, AUTOTEMP_FACTOR_P, 0);
+    autotemp_enabled = autotemp_factor != 0;
+>>>>>>> master
   }
 
   /**
@@ -1456,6 +1476,7 @@ void Planner::check_axes_activity() {
   void Planner::autotemp_M104_M109() {
     _autotemp_update_from_hotend();
 
+<<<<<<< HEAD
     if (parser.seenval('S')) autotemp.min = parser.value_celsius();
     if (parser.seenval('B')) autotemp.max = parser.value_celsius();
 
@@ -1463,6 +1484,15 @@ void Planner::check_axes_activity() {
     // Normally, leaving off F also disables autotemp.
     autotemp.factor = parser.seen('F') ? parser.value_float() : TERN(AUTOTEMP_PROPORTIONAL, AUTOTEMP_FACTOR_P, 0);
     autotemp.enabled = autotemp.factor != 0;
+=======
+    if (parser.seenval('S')) autotemp_min = parser.value_celsius();
+    if (parser.seenval('B')) autotemp_max = parser.value_celsius();
+
+    // When AUTOTEMP_PROPORTIONAL is enabled, F0 disables autotemp.
+    // Normally, leaving off F also disables autotemp.
+    autotemp_factor = parser.seen('F') ? parser.value_float() : TERN(AUTOTEMP_PROPORTIONAL, AUTOTEMP_FACTOR_P, 0);
+    autotemp_enabled = autotemp_factor != 0;
+>>>>>>> master
   }
 
   /**
@@ -1473,8 +1503,13 @@ void Planner::check_axes_activity() {
   void Planner::autotemp_task() {
     static float oldt = 0.0f;
 
+<<<<<<< HEAD
     if (!autotemp.enabled) return;
     if (thermalManager.degTargetHotend(active_extruder) < autotemp.min - 2) return; // Below the min?
+=======
+    if (!autotemp_enabled) return;
+    if (thermalManager.degTargetHotend(active_extruder) < autotemp_min - 2) return; // Below the min?
+>>>>>>> master
 
     float high = 0.0f;
     for (uint8_t b = block_buffer_tail; b != block_buffer_head; b = next_block_index(b)) {
@@ -1485,8 +1520,13 @@ void Planner::check_axes_activity() {
       }
     }
 
+<<<<<<< HEAD
     float t = autotemp.min + high * autotemp.factor;
     LIMIT(t, autotemp.min, autotemp.max);
+=======
+    float t = autotemp_min + high * autotemp_factor;
+    LIMIT(t, autotemp_min, autotemp_max);
+>>>>>>> master
     if (t < oldt) t = t * (1.0f - (AUTOTEMP_OLDWEIGHT)) + oldt * (AUTOTEMP_OLDWEIGHT);
     oldt = t;
     thermalManager.setTargetHotend(t, active_extruder);
@@ -2192,7 +2232,11 @@ bool Planner::_populate_block(
         #endif
       );
 
+<<<<<<< HEAD
       #if SECONDARY_LINEAR_AXES && NONE(FOAMCUTTER_XYUV, ARTICULATED_ROBOT_ARM)
+=======
+      #if SECONDARY_LINEAR_AXES >= 1 && NONE(FOAMCUTTER_XYUV, ARTICULATED_ROBOT_ARM)
+>>>>>>> master
         if (UNEAR_ZERO(distance_sqr)) {
           // Move does not involve any primary linear axes (xyz) but might involve secondary linear axes
           distance_sqr = (0.0f
@@ -3161,17 +3205,22 @@ bool Planner::buffer_line(const xyze_pos_t &cart, const_feedRate_t fr_mm_s
         ? xyz_pos_t(cart_dist_mm).magnitude()
         : TERN0(HAS_Z_AXIS, ABS(cart_dist_mm.z));
 
+<<<<<<< HEAD
     #if DISABLED(FEEDRATE_SCALING)
 
       const feedRate_t feedrate = fr_mm_s;
 
     #elif IS_SCARA
 
+=======
+    #if ENABLED(SCARA_FEEDRATE_SCALING)
+>>>>>>> master
       // For SCARA scale the feedrate from mm/s to degrees/s
       // i.e., Complete the angular vector in the given time.
       const float duration_recip = hints.inv_duration ?: fr_mm_s / ph.millimeters;
       const xyz_pos_t diff = delta - position_float;
       const feedRate_t feedrate = diff.magnitude() * duration_recip;
+<<<<<<< HEAD
 
     #elif ENABLED(POLAR)
 
@@ -3217,12 +3266,18 @@ bool Planner::buffer_line(const xyze_pos_t &cart, const_feedRate_t fr_mm_s
 
     #endif // POLAR && FEEDRATE_SCALING
 
+=======
+    #else
+      const feedRate_t feedrate = fr_mm_s;
+    #endif
+>>>>>>> master
     TERN_(HAS_EXTRUDERS, delta.e = machine.e);
     if (buffer_segment(delta OPTARG(HAS_DIST_MM_ARG, cart_dist_mm), feedrate, extruder, ph)) {
       position_cart = cart;
       return true;
     }
     return false;
+<<<<<<< HEAD
 
   #else // !IS_KINEMATIC
 
@@ -3230,6 +3285,11 @@ bool Planner::buffer_line(const xyze_pos_t &cart, const_feedRate_t fr_mm_s
 
   #endif
 
+=======
+  #else
+    return buffer_segment(machine, fr_mm_s, extruder, hints);
+  #endif
+>>>>>>> master
 } // buffer_line()
 
 #if ENABLED(DIRECT_STEPPING)

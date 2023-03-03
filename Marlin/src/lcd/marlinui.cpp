@@ -833,7 +833,11 @@ void MarlinUI::init() {
           // Apply a linear offset to a single axis
           if (axis == ALL_AXES_ENUM)
             destination = all_axes_destination;
+<<<<<<< HEAD
           else if (axis <= LOGICAL_AXES) {
+=======
+          else if (axis <= XYZE) {
+>>>>>>> master
             destination = current_position;
             destination[axis] += offset;
           }
@@ -1650,7 +1654,10 @@ void MarlinUI::init() {
     TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("UI Aborted"), FPSTR(DISMISS_STR)));
     LCD_MESSAGE(MSG_PRINT_ABORTED);
     TERN_(HAS_MARLINUI_MENU, return_to_status());
+<<<<<<< HEAD
     TERN_(DWIN_LCD_PROUI, HMI_flag.abort_flag = true);
+=======
+>>>>>>> master
   }
 
   #if BOTH(HAS_MARLINUI_MENU, PSU_CONTROL)
@@ -1743,11 +1750,17 @@ void MarlinUI::init() {
     );
   }
 
+<<<<<<< HEAD
   #if LCD_WITH_BLINK && HAS_EXTRA_PROGRESS
 
     // Renew and redraw all enabled progress strings
     void MarlinUI::rotate_progress() {
       typedef void (*PrintProgress_t)();
+=======
+  #if LCD_WITH_BLINK && DISABLED(HAS_GRAPHICAL_TFT)
+    typedef void (*PrintProgress_t)();
+    void MarlinUI::rotate_progress() { // Renew and redraw all enabled progress strings
+>>>>>>> master
       const PrintProgress_t progFunc[] = {
         OPTITEM(SHOW_PROGRESS_PERCENT, drawPercent)
         OPTITEM(SHOW_ELAPSED_TIME, drawElapsed)
@@ -1762,8 +1775,12 @@ void MarlinUI::init() {
         (*progFunc[i])();
       }
     }
+<<<<<<< HEAD
 
   #endif // LCD_WITH_BLINK && HAS_EXTRA_PROGRESS
+=======
+  #endif
+>>>>>>> master
 
 #endif // HAS_PRINT_PROGRESS
 

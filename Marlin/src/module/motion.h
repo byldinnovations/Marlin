@@ -32,8 +32,11 @@
 
 #if IS_SCARA
   #include "scara.h"
+<<<<<<< HEAD
 #elif ENABLED(POLAR)
   #include "polar.h"
+=======
+>>>>>>> master
 #endif
 
 // Error margin to work around float imprecision
@@ -346,7 +349,11 @@ inline void prepare_internal_move_to_destination(const_feedRate_t fr_mm_s=0.0f) 
 /**
  * Blocking movement and shorthand functions
  */
+<<<<<<< HEAD
 void do_blocking_move_to(NUM_AXIS_ARGS(const_float_t), const_feedRate_t fr_mm_s=0.0f);
+=======
+void do_blocking_move_to(NUM_AXIS_ARGS(const float), const_feedRate_t fr_mm_s=0.0f);
+>>>>>>> master
 void do_blocking_move_to(const xy_pos_t &raw, const_feedRate_t fr_mm_s=0.0f);
 void do_blocking_move_to(const xyz_pos_t &raw, const_feedRate_t fr_mm_s=0.0f);
 void do_blocking_move_to(const xyze_pos_t &raw, const_feedRate_t fr_mm_s=0.0f);
@@ -618,7 +625,11 @@ void home_if_needed(const bool keeplev=false);
 #endif
 
 #if HAS_M206_COMMAND
+<<<<<<< HEAD
   void set_home_offset(const AxisEnum axis, const_float_t v);
+=======
+  void set_home_offset(const AxisEnum axis, const float v);
+>>>>>>> master
 #endif
 
 #if USE_SENSORLESS

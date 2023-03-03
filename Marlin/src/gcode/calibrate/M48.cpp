@@ -162,8 +162,13 @@ void GcodeSuite::M48() {
         float angle = random(0, 360);
         const float radius = random(
           #if ENABLED(DELTA)
+<<<<<<< HEAD
             int(0.1250000000 * (PRINTABLE_RADIUS)),
             int(0.3333333333 * (PRINTABLE_RADIUS))
+=======
+            int(0.1250000000 * (DELTA_PRINTABLE_RADIUS)),
+            int(0.3333333333 * (DELTA_PRINTABLE_RADIUS))
+>>>>>>> master
           #else
             int(5), int(0.125 * _MIN(X_BED_SIZE, Y_BED_SIZE))
           #endif

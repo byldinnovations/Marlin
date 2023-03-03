@@ -29,10 +29,13 @@
 
 #include "motion.h"
 
+<<<<<<< HEAD
 #if ENABLED(DWIN_LCD_PROUI)
   #include "../lcd/e3v2/proui/dwin.h"
 #endif
 
+=======
+>>>>>>> master
 #if HAS_BED_PROBE
   enum ProbePtRaise : uint8_t {
     PROBE_PT_NONE,      // No raise or stow after run_z_probe
@@ -49,6 +52,7 @@
   #define PROBE_TRIGGERED() (READ(Z_MIN_PIN) != Z_MIN_ENDSTOP_INVERTING)
 #endif
 
+<<<<<<< HEAD
 #if ALL(DWIN_LCD_PROUI, INDIVIDUAL_AXIS_HOMING_SUBMENU, MESH_BED_LEVELING)
   #define Z_POST_CLEARANCE HMI_data.z_after_homing
 #elif defined(Z_AFTER_HOMING)
@@ -57,6 +61,14 @@
   #define Z_POST_CLEARANCE Z_HOMING_HEIGHT
 #else
   #define Z_POST_CLEARANCE 10
+=======
+#ifdef Z_AFTER_HOMING
+   #define Z_POST_CLEARANCE Z_AFTER_HOMING
+#elif defined(Z_HOMING_HEIGHT)
+   #define Z_POST_CLEARANCE Z_HOMING_HEIGHT
+#else
+   #define Z_POST_CLEARANCE 10
+>>>>>>> master
 #endif
 
 #if ENABLED(PREHEAT_BEFORE_LEVELING)
@@ -161,9 +173,15 @@ public:
   #endif
 
   static void move_z_after_homing() {
+<<<<<<< HEAD
     #if ALL(DWIN_LCD_PROUI, INDIVIDUAL_AXIS_HOMING_SUBMENU, MESH_BED_LEVELING) || defined(Z_AFTER_HOMING)
       do_z_clearance(Z_POST_CLEARANCE, true);
     #elif HAS_BED_PROBE
+=======
+    #ifdef Z_AFTER_HOMING
+      do_z_clearance(Z_AFTER_HOMING, true);
+    #elif BOTH(Z_AFTER_PROBING, HAS_BED_PROBE)
+>>>>>>> master
       move_z_after_probing();
     #endif
   }
@@ -193,8 +211,17 @@ public:
 
   #if HAS_BED_PROBE || HAS_LEVELING
     #if IS_KINEMATIC
+<<<<<<< HEAD
       static constexpr float probe_radius(const xy_pos_t &probe_offset_xy=offset_xy) {
         return float(PRINTABLE_RADIUS) - _MAX(PROBING_MARGIN, HYPOT(probe_offset_xy.x, probe_offset_xy.y));
+=======
+      static constexpr float printable_radius = (
+        TERN_(DELTA, DELTA_PRINTABLE_RADIUS)
+        TERN_(IS_SCARA, SCARA_PRINTABLE_RADIUS)
+      );
+      static constexpr float probe_radius(const xy_pos_t &probe_offset_xy=offset_xy) {
+        return printable_radius - _MAX(PROBING_MARGIN, HYPOT(probe_offset_xy.x, probe_offset_xy.y));
+>>>>>>> master
       }
     #endif
 

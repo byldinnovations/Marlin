@@ -168,8 +168,11 @@
   #include "module/polargraph.h"
 #elif IS_SCARA
   #include "module/scara.h"
+<<<<<<< HEAD
 #elif ENABLED(POLAR)
   #include "module/polar.h"
+=======
+>>>>>>> master
 #endif
 
 #if HAS_LEVELING
@@ -234,7 +237,11 @@
   #include "feature/password/password.h"
 #endif
 
+<<<<<<< HEAD
 #if DGUS_LCD_UI_MKS
+=======
+#if ENABLED(DGUS_LCD_UI_MKS)
+>>>>>>> master
   #include "lcd/extui/dgus/DGUSScreenHandler.h"
 #endif
 

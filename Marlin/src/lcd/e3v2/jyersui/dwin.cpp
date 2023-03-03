@@ -1213,7 +1213,11 @@ void CrealityDWINClass::Menu_Item_Handler(uint8_t menu, uint8_t item, bool draw/
                 if (thermalManager.temp_hotend[0].target < thermalManager.extrude_min_temp)
                   Popup_Handler(ETemp);
                 else {
+<<<<<<< HEAD
                   if (thermalManager.temp_hotend[0].is_below_target(2)) {
+=======
+                  if (thermalManager.temp_hotend[0].is_below_target(-2)) {
+>>>>>>> master
                     Popup_Handler(Heating);
                     thermalManager.wait_for_hotend(0);
                   }
@@ -1356,7 +1360,11 @@ void CrealityDWINClass::Menu_Item_Handler(uint8_t menu, uint8_t item, bool draw/
                 Popup_Handler(ETemp);
               }
               else {
+<<<<<<< HEAD
                 if (thermalManager.temp_hotend[0].is_below_target(2)) {
+=======
+                if (thermalManager.temp_hotend[0].is_below_target(-2)) {
+>>>>>>> master
                   Popup_Handler(Heating);
                   thermalManager.wait_for_hotend(0);
                   Redraw_Menu();
@@ -1743,7 +1751,11 @@ void CrealityDWINClass::Menu_Item_Handler(uint8_t menu, uint8_t item, bool draw/
               if (thermalManager.temp_hotend[0].target < thermalManager.extrude_min_temp)
                 Popup_Handler(ETemp);
               else {
+<<<<<<< HEAD
                 if (thermalManager.temp_hotend[0].is_below_target(2)) {
+=======
+                if (thermalManager.temp_hotend[0].is_below_target(-2)) {
+>>>>>>> master
                   Popup_Handler(Heating);
                   thermalManager.wait_for_hotend(0);
                 }
@@ -1762,7 +1774,11 @@ void CrealityDWINClass::Menu_Item_Handler(uint8_t menu, uint8_t item, bool draw/
                 Popup_Handler(ETemp);
               }
               else {
+<<<<<<< HEAD
                 if (thermalManager.temp_hotend[0].is_below_target(2)) {
+=======
+                if (thermalManager.temp_hotend[0].is_below_target(-2)) {
+>>>>>>> master
                   Popup_Handler(Heating);
                   thermalManager.wait_for_hotend(0);
                 }
@@ -1780,7 +1796,11 @@ void CrealityDWINClass::Menu_Item_Handler(uint8_t menu, uint8_t item, bool draw/
               if (thermalManager.temp_hotend[0].target < thermalManager.extrude_min_temp)
                 Popup_Handler(ETemp);
               else {
+<<<<<<< HEAD
                 if (thermalManager.temp_hotend[0].is_below_target(2)) {
+=======
+                if (thermalManager.temp_hotend[0].is_below_target(-2)) {
+>>>>>>> master
                   Popup_Handler(Heating);
                   thermalManager.wait_for_hotend(0);
                 }
@@ -4505,7 +4525,11 @@ void CrealityDWINClass::Popup_Control() {
             if (thermalManager.temp_hotend[0].target < thermalManager.extrude_min_temp)
               Popup_Handler(ETemp);
             else {
+<<<<<<< HEAD
               if (thermalManager.temp_hotend[0].is_below_target(2)) {
+=======
+              if (thermalManager.temp_hotend[0].is_below_target(-2)) {
+>>>>>>> master
                 Popup_Handler(Heating);
                 thermalManager.wait_for_hotend(0);
               }
@@ -4663,7 +4687,11 @@ void CrealityDWINClass::Start_Print(bool sd) {
     if (sd) {
       #if ENABLED(POWER_LOSS_RECOVERY)
         if (recovery.valid()) {
+<<<<<<< HEAD
           MediaFile *diveDir = nullptr;
+=======
+          SdFile *diveDir = nullptr;
+>>>>>>> master
           const char * const fname = card.diveToFile(true, diveDir, recovery.info.sd_filename);
           card.selectFileByName(fname);
         }

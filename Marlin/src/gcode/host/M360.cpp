@@ -161,7 +161,10 @@ void GcodeSuite::M360() {
   SERIAL_ECHOLNPGM(
     TERN_(DELTA,         "Delta")
     TERN_(IS_SCARA,      "SCARA")
+<<<<<<< HEAD
     TERN_(POLAR,         "Polar")
+=======
+>>>>>>> master
     TERN_(IS_CORE,       "Core")
     TERN_(MARKFORGED_XY, "MarkForgedXY")
     TERN_(MARKFORGED_YX, "MarkForgedYX")

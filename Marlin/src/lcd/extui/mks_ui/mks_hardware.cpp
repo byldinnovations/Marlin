@@ -727,7 +727,11 @@ void disp_assets_update_progress(FSTR_P const fmsg) {
   uint8_t mks_test_flag = 0;
   const char *MKSTestPath = "MKS_TEST";
   void mks_test_get() {
+<<<<<<< HEAD
     MediaFile dir, root = card.getroot();
+=======
+    SdFile dir, root = card.getroot();
+>>>>>>> master
     if (dir.open(&root, MKSTestPath, O_RDONLY))
       mks_test_flag = 0x1E;
   }

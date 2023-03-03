@@ -33,10 +33,16 @@
 //
 #define X_STEP_PIN                          PB9
 #define X_DIR_PIN                           PC2
+<<<<<<< HEAD
 
 #define Y_STEP_PIN                          PB7
 #define Y_DIR_PIN                           PB8
 
+=======
+#define Y_STEP_PIN                          PB7
+
+#define Y_DIR_PIN                           PB8
+>>>>>>> master
 #define Z_STEP_PIN                          PB5
 #define Z_DIR_PIN                           PB6
 

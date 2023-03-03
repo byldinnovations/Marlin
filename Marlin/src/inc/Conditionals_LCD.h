@@ -36,6 +36,7 @@
   #define FYSETC_MINI_12864_2_1
 #endif
 
+<<<<<<< HEAD
 // Old settings are now conditional on DGUS_LCD_UI
 #if DGUS_UI_IS(ORIGIN)
   #define DGUS_LCD_UI_ORIGIN 1
@@ -51,6 +52,8 @@
   #define DGUS_LCD_UI_IA_CREALITY 1
 #endif
 
+=======
+>>>>>>> master
 /**
  * General Flags that may be set below by specific LCDs
  *
@@ -324,7 +327,11 @@
   #define IS_ULTIPANEL 1
 #endif
 
+<<<<<<< HEAD
 // TFT Legacy Compatibility
+=======
+// TFT Compatibility
+>>>>>>> master
 #if ANY(FSMC_GRAPHICAL_TFT, SPI_GRAPHICAL_TFT, TFT_320x240, TFT_480x320, TFT_320x240_SPI, TFT_480x320_SPI, TFT_LVGL_UI_FSMC, TFT_LVGL_UI_SPI)
   #define IS_LEGACY_TFT 1
   #define TFT_GENERIC
@@ -477,11 +484,20 @@
 #endif
 
 // Aliases for LCD features
+<<<<<<< HEAD
 #if !DGUS_UI_IS(NONE)
   #define HAS_DGUS_LCD 1
   #if DGUS_UI_IS(ORIGIN, FYSETC, HIPRECY, MKS)
     #define HAS_DGUS_LCD_CLASSIC 1
   #endif
+=======
+#if ANY(DGUS_LCD_UI_ORIGIN, DGUS_LCD_UI_FYSETC, DGUS_LCD_UI_HIPRECY, DGUS_LCD_UI_MKS)
+  #define HAS_DGUS_LCD_CLASSIC 1
+#endif
+
+#if EITHER(HAS_DGUS_LCD_CLASSIC, DGUS_LCD_UI_RELOADED)
+  #define HAS_DGUS_LCD 1
+>>>>>>> master
 #endif
 
 // Extensible UI serial touch screens. (See src/lcd/extui)
@@ -603,6 +619,7 @@
 #else
   #undef EXTRUDERS
   #define EXTRUDERS 0
+<<<<<<< HEAD
   #undef TEMP_SENSOR_0
   #undef TEMP_SENSOR_1
   #undef TEMP_SENSOR_2
@@ -611,18 +628,23 @@
   #undef TEMP_SENSOR_5
   #undef TEMP_SENSOR_6
   #undef TEMP_SENSOR_7
+=======
+>>>>>>> master
   #undef SINGLENOZZLE
   #undef SWITCHING_EXTRUDER
   #undef SWITCHING_NOZZLE
   #undef MIXING_EXTRUDER
   #undef HOTEND_IDLE_TIMEOUT
   #undef DISABLE_E
+<<<<<<< HEAD
   #undef THERMAL_PROTECTION_HOTENDS
   #undef PREVENT_COLD_EXTRUSION
   #undef PREVENT_LENGTHY_EXTRUDE
   #undef FILAMENT_RUNOUT_SENSOR
   #undef FILAMENT_RUNOUT_DISTANCE_MM
   #undef DISABLE_INACTIVE_EXTRUDER
+=======
+>>>>>>> master
 #endif
 
 #define E_OPTARG(N) OPTARG(HAS_MULTI_EXTRUDER, N)
@@ -696,6 +718,7 @@
 
 #if E_STEPPERS <= 7
   #undef INVERT_E7_DIR
+<<<<<<< HEAD
   #undef E7_DRIVER_TYPE
   #if E_STEPPERS <= 6
     #undef INVERT_E6_DIR
@@ -718,6 +741,22 @@
               #if E_STEPPERS == 0
                 #undef INVERT_E0_DIR
                 #undef E0_DRIVER_TYPE
+=======
+  #if E_STEPPERS <= 6
+    #undef INVERT_E6_DIR
+    #if E_STEPPERS <= 5
+      #undef INVERT_E5_DIR
+      #if E_STEPPERS <= 4
+        #undef INVERT_E4_DIR
+        #if E_STEPPERS <= 3
+          #undef INVERT_E3_DIR
+          #if E_STEPPERS <= 2
+            #undef INVERT_E2_DIR
+            #if E_STEPPERS <= 1
+              #undef INVERT_E1_DIR
+              #if E_STEPPERS == 0
+                #undef INVERT_E0_DIR
+>>>>>>> master
               #endif
             #endif
           #endif
@@ -755,7 +794,10 @@
 #else
   #define NUM_AXES 1
 #endif
+<<<<<<< HEAD
 #define HAS_X_AXIS 1
+=======
+>>>>>>> master
 #if NUM_AXES >= XY
   #define HAS_Y_AXIS 1
   #if NUM_AXES >= XYZ
@@ -790,6 +832,34 @@
   #endif
 #endif
 
+<<<<<<< HEAD
+=======
+#if E_STEPPERS <= 0
+  #undef E0_DRIVER_TYPE
+#endif
+#if E_STEPPERS <= 1
+  #undef E1_DRIVER_TYPE
+#endif
+#if E_STEPPERS <= 2
+  #undef E2_DRIVER_TYPE
+#endif
+#if E_STEPPERS <= 3
+  #undef E3_DRIVER_TYPE
+#endif
+#if E_STEPPERS <= 4
+  #undef E4_DRIVER_TYPE
+#endif
+#if E_STEPPERS <= 5
+  #undef E5_DRIVER_TYPE
+#endif
+#if E_STEPPERS <= 6
+  #undef E6_DRIVER_TYPE
+#endif
+#if E_STEPPERS <= 7
+  #undef E7_DRIVER_TYPE
+#endif
+
+>>>>>>> master
 #if !HAS_Y_AXIS
   #undef ENDSTOPPULLUP_YMIN
   #undef ENDSTOPPULLUP_YMAX
@@ -805,6 +875,10 @@
   #undef MANUAL_Y_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_Y
   #undef MAX_SOFTWARE_ENDSTOP_Y
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_Y
+>>>>>>> master
 #endif
 
 #if !HAS_Z_AXIS
@@ -824,6 +898,10 @@
   #undef MANUAL_Z_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_Z
   #undef MAX_SOFTWARE_ENDSTOP_Z
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_Z
+>>>>>>> master
 #endif
 
 #if !HAS_I_AXIS
@@ -840,6 +918,10 @@
   #undef MANUAL_I_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_I
   #undef MAX_SOFTWARE_ENDSTOP_I
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_I
+>>>>>>> master
 #endif
 
 #if !HAS_J_AXIS
@@ -856,6 +938,10 @@
   #undef MANUAL_J_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_J
   #undef MAX_SOFTWARE_ENDSTOP_J
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_J
+>>>>>>> master
 #endif
 
 #if !HAS_K_AXIS
@@ -872,6 +958,10 @@
   #undef MANUAL_K_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_K
   #undef MAX_SOFTWARE_ENDSTOP_K
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_K
+>>>>>>> master
 #endif
 
 #if !HAS_U_AXIS
@@ -888,6 +978,10 @@
   #undef MANUAL_U_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_U
   #undef MAX_SOFTWARE_ENDSTOP_U
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_U
+>>>>>>> master
 #endif
 
 #if !HAS_V_AXIS
@@ -904,6 +998,10 @@
   #undef MANUAL_V_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_V
   #undef MAX_SOFTWARE_ENDSTOP_V
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_V
+>>>>>>> master
 #endif
 
 #if !HAS_W_AXIS
@@ -920,6 +1018,10 @@
   #undef MANUAL_W_HOME_POS
   #undef MIN_SOFTWARE_ENDSTOP_W
   #undef MAX_SOFTWARE_ENDSTOP_W
+<<<<<<< HEAD
+=======
+  #undef SAFE_BED_LEVELING_START_W
+>>>>>>> master
 #endif
 
 #ifdef X2_DRIVER_TYPE
@@ -1091,10 +1193,17 @@
 /**
  * Set flags for any form of bed probe
  */
+<<<<<<< HEAD
 #if ANY(TOUCH_MI_PROBE, Z_PROBE_ALLEN_KEY, HAS_Z_SERVO_PROBE, SOLENOID_PROBE, Z_PROBE_SLED, RACK_AND_PINION_PROBE, SENSORLESS_PROBING, MAGLEV4, MAG_MOUNTED_PROBE)
   #define HAS_STOWABLE_PROBE 1
 #endif
 #if ANY(HAS_STOWABLE_PROBE, FIX_MOUNTED_PROBE, BD_SENSOR, NOZZLE_AS_PROBE)
+=======
+#if ANY(TOUCH_MI_PROBE, Z_PROBE_ALLEN_KEY, SOLENOID_PROBE, Z_PROBE_SLED, RACK_AND_PINION_PROBE, SENSORLESS_PROBING, MAGLEV4, MAG_MOUNTED_PROBE)
+  #define HAS_STOWABLE_PROBE 1
+#endif
+#if ANY(HAS_STOWABLE_PROBE, HAS_Z_SERVO_PROBE, FIX_MOUNTED_PROBE, BD_SENSOR, NOZZLE_AS_PROBE)
+>>>>>>> master
   #define HAS_BED_PROBE 1
 #endif
 
@@ -1288,7 +1397,10 @@
   // Clear probe pin settings when no probe is selected
   #undef Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
   #undef USE_PROBE_FOR_Z_HOMING
+<<<<<<< HEAD
   #undef Z_MIN_PROBE_REPEATABILITY_TEST
+=======
+>>>>>>> master
 #endif
 
 #if ENABLED(BELTPRINTER) && !defined(HOME_Y_BEFORE_X)
@@ -1397,7 +1509,11 @@
 #if ANY(MORGAN_SCARA, MP_SCARA, AXEL_TPARA)
   #define IS_SCARA 1
   #define IS_KINEMATIC 1
+<<<<<<< HEAD
 #elif ANY(DELTA, POLARGRAPH, POLAR)
+=======
+#elif EITHER(DELTA, POLARGRAPH)
+>>>>>>> master
   #define IS_KINEMATIC 1
 #else
   #define IS_CARTESIAN 1
@@ -1515,6 +1631,33 @@
   #endif
 #endif
 
+<<<<<<< HEAD
+=======
+#if ENABLED(TFT_RES_320x240)
+  #define TFT_WIDTH  320
+  #define TFT_HEIGHT 240
+  #define GRAPHICAL_TFT_UPSCALE 2
+#elif ENABLED(TFT_RES_480x272)
+  #define TFT_WIDTH  480
+  #define TFT_HEIGHT 272
+  #define GRAPHICAL_TFT_UPSCALE 2
+#elif ENABLED(TFT_RES_480x320)
+  #define TFT_WIDTH  480
+  #define TFT_HEIGHT 320
+  #define GRAPHICAL_TFT_UPSCALE 3
+#elif ENABLED(TFT_RES_1024x600)
+  #define TFT_WIDTH  1024
+  #define TFT_HEIGHT 600
+  #if ENABLED(TOUCH_SCREEN)
+    #define GRAPHICAL_TFT_UPSCALE 6
+    #define TFT_PIXEL_OFFSET_X 120
+  #else
+    #define GRAPHICAL_TFT_UPSCALE 8
+    #define TFT_PIXEL_OFFSET_X 0
+  #endif
+#endif
+
+>>>>>>> master
 // FSMC/SPI TFT Panels using standard HAL/tft/tft_(fsmc|spi|ltdc).h
 #if ENABLED(TFT_INTERFACE_FSMC)
   #define HAS_FSMC_TFT 1
@@ -1539,6 +1682,7 @@
   #endif
 #endif
 
+<<<<<<< HEAD
 #if ANY(HAS_SPI_TFT, HAS_FSMC_TFT, HAS_LTDC_TFT)
   #include "../lcd/tft_io/tft_orientation.h"
 #endif
@@ -1574,6 +1718,10 @@
 
 #if ENABLED(TFT_COLOR_UI)
   #if (TFT_WIDTH == 320 && TFT_HEIGHT == 240) || (TFT_WIDTH == 240 && TFT_HEIGHT == 320)
+=======
+#if ENABLED(TFT_COLOR_UI)
+  #if TFT_HEIGHT == 240
+>>>>>>> master
     #if ENABLED(TFT_INTERFACE_SPI)
       #define TFT_320x240_SPI
     #elif ENABLED(TFT_INTERFACE_FSMC)
@@ -1610,11 +1758,15 @@
   #define HAS_UI_1024x600 1
 #endif
 #if ANY(HAS_UI_320x240, HAS_UI_480x320, HAS_UI_480x272)
+<<<<<<< HEAD
   #if ENABLED(TFT_COLOR_UI_PORTRAIT)
     #define LCD_HEIGHT TERN(TOUCH_SCREEN, 8, 9) // Fewer lines with touch buttons onscreen
   #else
     #define LCD_HEIGHT TERN(TOUCH_SCREEN, 6, 7) // Fewer lines with touch buttons onscreen
   #endif
+=======
+  #define LCD_HEIGHT TERN(TOUCH_SCREEN, 6, 7)   // Fewer lines with touch buttons onscreen
+>>>>>>> master
 #elif HAS_UI_1024x600
   #define LCD_HEIGHT TERN(TOUCH_SCREEN, 12, 13) // Fewer lines with touch buttons onscreen
 #endif
@@ -1655,9 +1807,13 @@
   #endif
 #endif
 
+<<<<<<< HEAD
 #if X_HOME_DIR || (HAS_Y_AXIS && Y_HOME_DIR) || (HAS_Z_AXIS && Z_HOME_DIR) \
   || (HAS_I_AXIS && I_HOME_DIR) || (HAS_J_AXIS && J_HOME_DIR) || (HAS_K_AXIS && K_HOME_DIR) \
   || (HAS_U_AXIS && U_HOME_DIR) || (HAS_V_AXIS && V_HOME_DIR) || (HAS_W_AXIS && W_HOME_DIR)
+=======
+#if X_HOME_DIR || (HAS_Y_AXIS && Y_HOME_DIR) || (HAS_Z_AXIS && Z_HOME_DIR) || (HAS_I_AXIS && I_HOME_DIR) || (HAS_J_AXIS && J_HOME_DIR) || (HAS_K_AXIS && K_HOME_DIR)
+>>>>>>> master
   #define HAS_ENDSTOPS 1
   #define COORDINATE_OKAY(N,L,H) WITHIN(N,L,H)
 #else

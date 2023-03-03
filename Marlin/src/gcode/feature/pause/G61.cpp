@@ -35,6 +35,7 @@
 /**
  * G61: Return to saved position
  *
+<<<<<<< HEAD
  *   F<rate>   - Feedrate (optional) for the move back.
  *   S<slot>   - Slot # (0-based) to restore from (default 0).
  *   X<offset> - Restore X axis, applying the given offset (default 0)
@@ -53,6 +54,13 @@
  *   W<offset> - Restore 9th axis, applying the given offset (default 0)
  *
  *   If no axes are specified then all axes are restored.
+=======
+ *   F<rate>  - Feedrate (optional) for the move back.
+ *   S<slot>  - Slot # (0-based) to restore from (default 0).
+ *   X Y Z E  - Axes to restore. At least one is required.
+ *
+ *   If XYZE are not given, default restore uses the smart blocking move.
+>>>>>>> master
  */
 void GcodeSuite::G61() {
 
@@ -84,7 +92,11 @@ void GcodeSuite::G61() {
     if (parser.seen(STR_AXES_MAIN)) {
       DEBUG_ECHOPGM(STR_RESTORING_POS " S", slot);
       LOOP_NUM_AXES(i) {
+<<<<<<< HEAD
         destination[i] = parser.seen(AXIS_CHAR(i))
+=======
+        destination[i] = parser.seenval(AXIS_CHAR(i))
+>>>>>>> master
           ? stored_position[slot][i] + parser.value_axis_units((AxisEnum)i)
           : current_position[i];
         DEBUG_CHAR(' ', AXIS_CHAR(i));

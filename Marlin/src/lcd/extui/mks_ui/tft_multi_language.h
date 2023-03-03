@@ -150,7 +150,11 @@ typedef struct machine_common_disp {
 
   const char *HotbedEnable;
   const char *HotbedConfTitle;
+<<<<<<< HEAD
   const char *HotbedAdjustType;
+=======
+  const char *HotbedAjustType;
+>>>>>>> master
   const char *HotbedMinTemperature;
   const char *HotbedMaxTemperature;
 

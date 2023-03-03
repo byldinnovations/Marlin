@@ -305,24 +305,39 @@ void MarlinUI::draw_status_screen() {
 
   y += 100;
   // feed rate
+<<<<<<< HEAD
   tft.canvas(274, y, 128, 32);
+=======
+  tft.canvas(274, y, 100, 32);
+>>>>>>> master
   tft.set_background(COLOR_BACKGROUND);
   uint16_t color = feedrate_percentage == 100 ? COLOR_RATE_100 : COLOR_RATE_ALTERED;
   tft.add_image(0, 0, imgFeedRate, color);
   tft_string.set(i16tostr3rj(feedrate_percentage));
   tft_string.add('%');
   tft.add_text(36, 1, color , tft_string);
+<<<<<<< HEAD
   TERN_(TOUCH_SCREEN, touch.add_control(FEEDRATE, 274, y, 128, 32));
 
   // flow rate
   tft.canvas(650, y, 128, 32);
+=======
+  TERN_(TOUCH_SCREEN, touch.add_control(FEEDRATE, 274, y, 100, 32));
+
+  // flow rate
+  tft.canvas(650, y, 100, 32);
+>>>>>>> master
   tft.set_background(COLOR_BACKGROUND);
   color = planner.flow_percentage[0] == 100 ? COLOR_RATE_100 : COLOR_RATE_ALTERED;
   tft.add_image(0, 0, imgFlowRate, color);
   tft_string.set(i16tostr3rj(planner.flow_percentage[active_extruder]));
   tft_string.add('%');
   tft.add_text(36, 1, color , tft_string);
+<<<<<<< HEAD
   TERN_(TOUCH_SCREEN, touch.add_control(FLOWRATE, 650, y, 128, 32, active_extruder));
+=======
+  TERN_(TOUCH_SCREEN, touch.add_control(FLOWRATE, 650, y, 100, 32, active_extruder));
+>>>>>>> master
 
   #if ENABLED(TOUCH_SCREEN)
     add_control(900, y, menu_main, imgSettings);
@@ -354,7 +369,11 @@ void MarlinUI::draw_status_screen() {
 
   y += 50;
   // status message
+<<<<<<< HEAD
   tft.canvas(0, y, TFT_WIDTH, FONT_LINE_HEIGHT);
+=======
+  tft.canvas(0, y, TFT_WIDTH, FONT_LINE_HEIGHT - 5);
+>>>>>>> master
   tft.set_background(COLOR_BACKGROUND);
   tft_string.set(status_message);
   tft_string.trim();
@@ -592,6 +611,14 @@ struct MotionAxisState {
 
 MotionAxisState motionAxisState;
 
+<<<<<<< HEAD
+=======
+#define E_BTN_COLOR COLOR_YELLOW
+#define X_BTN_COLOR COLOR_CORAL_RED
+#define Y_BTN_COLOR COLOR_VIVID_GREEN
+#define Z_BTN_COLOR COLOR_LIGHT_BLUE
+
+>>>>>>> master
 #define BTN_WIDTH 64
 #define BTN_HEIGHT 52
 #define X_MARGIN 20
@@ -670,10 +697,19 @@ static void drawAxisValue(const AxisEnum axis) {
 static void moveAxis(const AxisEnum axis, const int8_t direction) {
   quick_feedback();
 
+<<<<<<< HEAD
   if (axis == E_AXIS && thermalManager.tooColdToExtrude(motionAxisState.e_selection)) {
     drawMessage(F("Too cold"));
     return;
   }
+=======
+  #if ENABLED(PREVENT_COLD_EXTRUSION)
+    if (axis == E_AXIS && thermalManager.tooColdToExtrude(motionAxisState.e_selection)) {
+      drawMessage(F("Too cold"));
+      return;
+    }
+  #endif
+>>>>>>> master
 
   const float diff = motionAxisState.currentStepSize * direction;
 
@@ -693,12 +729,21 @@ static void moveAxis(const AxisEnum axis, const int8_t direction) {
           probe.offset.z = new_offs;
         else
           TERN(BABYSTEP_HOTEND_Z_OFFSET, hotend_offset[active_extruder].z = new_offs, NOOP);
+<<<<<<< HEAD
         drawMessage(F("")); // clear the error
         drawAxisValue(axis);
       }
       else
         drawMessage(GET_TEXT_F(MSG_LCD_SOFT_ENDSTOPS));
 
+=======
+        drawMessage(""); // clear the error
+        drawAxisValue(axis);
+      }
+      else {
+        drawMessage(GET_TEXT_F(MSG_LCD_SOFT_ENDSTOPS));
+      }
+>>>>>>> master
     #elif HAS_BED_PROBE
       // only change probe.offset.z
       probe.offset.z += diff;
@@ -710,9 +755,15 @@ static void moveAxis(const AxisEnum axis, const int8_t direction) {
         current_position[axis] = Z_PROBE_OFFSET_RANGE_MAX;
         drawMessage(GET_TEXT_F(MSG_LCD_SOFT_ENDSTOPS));
       }
+<<<<<<< HEAD
       else
         drawMessage(F("")); // clear the error
 
+=======
+      else {
+        drawMessage(""); // clear the error
+      }
+>>>>>>> master
       drawAxisValue(axis);
     #endif
     return;
@@ -727,7 +778,11 @@ static void moveAxis(const AxisEnum axis, const int8_t direction) {
     // This assumes the center is 0,0
     #if ENABLED(DELTA)
       if (axis != Z_AXIS && axis != E_AXIS) {
+<<<<<<< HEAD
         max = SQRT(sq(float(PRINTABLE_RADIUS)) - sq(current_position[Y_AXIS - axis])); // (Y_AXIS - axis) == the other axis
+=======
+        max = SQRT(sq((float)(DELTA_PRINTABLE_RADIUS)) - sq(current_position[Y_AXIS - axis])); // (Y_AXIS - axis) == the other axis
+>>>>>>> master
         min = -max;
       }
     #endif
@@ -758,8 +813,15 @@ static void z_minus() { moveAxis(Z_AXIS, -1); }
 
 #if ENABLED(TOUCH_SCREEN)
   static void e_select() {
+<<<<<<< HEAD
     if (++motionAxisState.e_selection >= EXTRUDERS)
       motionAxisState.e_selection = 0;
+=======
+    motionAxisState.e_selection++;
+    if (motionAxisState.e_selection >= EXTRUDERS) {
+      motionAxisState.e_selection = 0;
+    }
+>>>>>>> master
 
     quick_feedback();
     drawCurESelection();
@@ -801,8 +863,13 @@ static void disable_steppers() {
 }
 
 static void drawBtn(int x, int y, const char *label, intptr_t data, MarlinImage img, uint16_t bgColor, bool enabled = true) {
+<<<<<<< HEAD
   uint16_t width = Images[imgBtn52Rounded].width,
            height = Images[imgBtn52Rounded].height;
+=======
+  uint16_t width = Images[imgBtn52Rounded].width;
+  uint16_t height = Images[imgBtn52Rounded].height;
+>>>>>>> master
 
   if (!enabled) bgColor = COLOR_CONTROL_DISABLED;
 
